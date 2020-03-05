@@ -1,7 +1,11 @@
 package ehu.project;
 
+import ehu.project.Klaseak.Taula;
+import ehu.project.db.DBKud;
+import ehu.project.db.DBKudeatzaileSQLITE;
 import ehu.project.ui.TableroaKud;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Time;
 
 public class Main extends Application {
 
@@ -63,8 +68,5 @@ public void pantailaHanditu(){
   stage.setHeight(640);
 }
 
-public void rankingBistaratu(String izena, String denbora){
-    //llamar al kudeatzaile para q ejecute ese metodo jaja
-}
 
 }

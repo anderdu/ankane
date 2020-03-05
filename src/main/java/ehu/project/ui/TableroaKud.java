@@ -1,15 +1,19 @@
 package ehu.project.ui;
 
+import ehu.project.Klaseak.Taula;
 import ehu.project.Main;
+import ehu.project.db.DBKud;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -17,6 +21,9 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -40,14 +47,15 @@ public class TableroaKud implements Initializable {
     //ranking-a
     public Button berrizB;
     public Button rankingB;
-    public TableView taula;
-    public TableColumn tRank;
-    public TableColumn tIzen;
-    public TableColumn tDenb;
     public Label labelRanking;
     public Label labelIzena;
     public TextField IzenaSartu;
     public Button OK;
+    //taula
+    public TableView taula;
+    public TableColumn<Taula,Integer> tRank;
+    public TableColumn<Taula,String> tIzen;
+    public TableColumn<Taula,Time> tDenb;
 
 
     private Main mainApp;
@@ -1259,7 +1267,27 @@ public class TableroaKud implements Initializable {
             OK.setVisible(false);
             taula.setVisible(true);
             labelRanking.setVisible(true);
-            mainApp.rankingBistaratu(IzenaSartu.getText(),timerLabel.getText());
+
+            //esto de pasar de string a time no sé si está bien. habra q mirarlo con calma
+            SimpleDateFormat format = new SimpleDateFormat("ss:SS"); //segundos, microsegundos. tambien habria q meter minutos I think
+            Date d1 = null;
+            try {
+                d1 = (Date)format.parse(timerLabel.getText());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            java.sql.Time timeEgokia = new java.sql.Time(d1.getTime());
+
+            ObservableList<Taula>  taulaDatuak= DBKud.getInstantzia().rankingErakutsi(IzenaSartu.getText(),timeEgokia,nondik);
+
+            //taula bete
+
+            tRank.setCellValueFactory(new PropertyValueFactory<>("pos"));
+            tIzen.setCellValueFactory(new PropertyValueFactory<>("izena"));
+            tDenb.setCellValueFactory(new PropertyValueFactory<>("denbora"));
+            taula.setItems(taulaDatuak);
+
+
         }else{
             labelIzena.setText("Izena berriz sartu:");
         }
