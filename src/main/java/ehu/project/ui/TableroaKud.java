@@ -1,18 +1,54 @@
-package ehu.project.controller.ui;
+package ehu.project.ui;
 
 import ehu.project.Main;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.*;
 
 
 public class TableroaKud implements Initializable {
+
+    public RadioMenuItem menuBiJok;
+    public RadioMenuItem menuJOErraza;
+    public RadioMenuItem menuJOZaila;
+    public ToggleGroup toggleGroup;
+    public ImageView flechaAzul;
+    public ImageView flechaRoja;
+    public ImageView suziri1;
+    public ImageView suziri2;
+    public ImageView suziri3;
+    public ImageView suziri4;
+    public ImageView suziri5;
+    public ImageView suziri6;
+    public ImageView triste;
+    public Label irabaziLabel;
+
+    //ranking-a
+    public Button berrizB;
+    public Button rankingB;
+    public TableView taula;
+    public TableColumn tRank;
+    public TableColumn tIzen;
+    public TableColumn tDenb;
+    public Label labelRanking;
+    public Label labelIzena;
+    public TextField IzenaSartu;
+    public Button OK;
+
 
     private Main mainApp;
 
@@ -21,6 +57,26 @@ public class TableroaKud implements Initializable {
     private static boolean[][] tableroa;
     private static boolean[][] gorri;
     private static boolean[][] urdin;
+
+    //botoiak
+    public Button b0;
+    public Button b01;
+    public Button b02;
+    public Button b03;
+    public Button b04;
+    public Button b05;
+    public Button b06;
+    public Button b07;
+    public Button b08;
+
+    public Button actualButton=null;
+
+
+    //cronometrorako
+    @FXML
+    private Label timerLabel = new Label();
+    public Label denboraLabel;
+    private boolean stop=false;
 
     @FXML
     private Circle k00; //columna,linea
@@ -150,6 +206,11 @@ public class TableroaKud implements Initializable {
     private String jok2;
     private String nondik;
 
+    private static TableroaKud instantzia = new TableroaKud();
+
+    public static TableroaKud getInstantzia() {
+        return instantzia;
+    }
 
     public void setMainApp(Main main) {
         this.mainApp = main;
@@ -158,29 +219,50 @@ public class TableroaKud implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        suziri1.setVisible(false);
+        suziri2.setVisible(false);
+        suziri3.setVisible(false);
+        suziri4.setVisible(false);
+        suziri5.setVisible(false);
+        suziri6.setVisible(false);
+        triste.setVisible(false);
+        irabaziLabel.setTextFill(Color.YELLOW); //no se por que no hace
+        irabaziLabel.setVisible(false);
+        berrizB.setVisible(false);
     }
 
 
 
     public void hasieratu(String j1,String j2,String n){
+        stop=false;
         this.nondik=n;
         jokalaria = 1;
         if(nondik.equals("BiJok")){ //2 jokalariak ezarri eta txanda ezarri
+            toggleGroup.selectToggle(menuBiJok);
             jok1 = j1;
             jok2 = j2;
             jokalariTxanda.setText(j1);
             title.setText("2 Jokalari");
+            denboraLabel.setVisible(false);
+            timerLabel.setVisible(false);
         }else if(nondik.equals("JOErraza")){ //jokalari soila. Beste jokalaria ordenagailua da
+            toggleGroup.selectToggle(menuJOErraza);
             jok1 = j1;
             jok2 = "Ordenagailua";
             jokalariTxanda.setText(j1);
             title.setText("1 Jokalari VS Ordenagailu - Erraza");
+            denboraLabel.setVisible(true);
+            timerLabel.setVisible(true);
+            start();
         }else if(nondik.equals("JOZaila")){
+            toggleGroup.selectToggle(menuJOZaila);
             jok1 = j1;
             jok2 = "Ordenagailua";
             jokalariTxanda.setText(j1);
             title.setText("1 Jokalari VS Ordenagailu - Zaila");
+            denboraLabel.setVisible(true);
+            timerLabel.setVisible(true);
+            start();
         }else{
             System.out.println("Erroreren bat egon da");
         }
@@ -196,6 +278,15 @@ public class TableroaKud implements Initializable {
                 tableroa[i][j] = false;
             }
         }
+
+        //ranking-eko gauzak
+        berrizB.setVisible(false);
+        rankingB.setVisible(false);
+        taula.setVisible(false);
+        labelRanking.setVisible(false);
+        labelIzena.setVisible(false);
+        IzenaSartu.setVisible(false);
+        OK.setVisible(false);
     }
 
 
@@ -207,8 +298,15 @@ public class TableroaKud implements Initializable {
             konprobatu4EnRayaDagoen(zutabea,ilara,"gorri");
             jokalaria++;
             jokalariTxanda.setText(jok2);
-            if(jok2.equals("Ordenagailua")){
-                ordenagailuarenTxanda();
+
+            if(jokalariTxanda.getText().equals("Ordenagailua")){
+                Timer timer = new Timer();
+                timer.schedule(new RemindTask(), 1000);
+
+                //ordenagailuarenTxanda();
+            }
+            if(actualButton!=null){
+                actualButton.setGraphic(flechaAzul);
             }
         } else {
             kasilla.setFill(Color.BLUE);
@@ -216,12 +314,19 @@ public class TableroaKud implements Initializable {
             konprobatu4EnRayaDagoen(zutabea,ilara,"urdin");
             jokalaria--;
             jokalariTxanda.setText(jok1);
+            if(actualButton!=null){
+                actualButton.setGraphic(flechaRoja);
+            }
         }
     }
 
-    public void ordenagailuarenTxanda(){
+    public void ordenagailuarenTxanda() {
+        //DelayUtil d = new DelayUtil();
+        //d.delay(1000);
+
         if(nondik.equals("JOErraza")){
             ordenagailuaZutabeBatHautatuAleatorioki(); //Ordenagailu erraza
+
         }else if(nondik.equals("JOZaila")){
             //ZAILA
         }else{
@@ -602,7 +707,8 @@ public class TableroaKud implements Initializable {
                         if((zutabea-3)>=0){
                             if(m[zutabea-3][ilara]){
                                 irabazi=true;
-                                System.out.println("IRABAZI "+jokalariTxanda);
+                                this.irabazi();
+                                stop=true;
                             }else{
                                 outNon=3;
                             }
@@ -627,7 +733,8 @@ public class TableroaKud implements Initializable {
                     if(m[zutabea+2][ilara]){
                         if(m[zutabea+3][ilara]){
                             irabazi=true;
-                            System.out.println("IRABAZI "+jokalariTxanda);
+                            this.irabazi();
+                            stop=true;
                         }
                     }
                 }
@@ -637,7 +744,8 @@ public class TableroaKud implements Initializable {
                 if(m[zutabea+1][ilara]){
                     if(m[zutabea+2][ilara]){
                         irabazi=true;
-                        System.out.println("IRABAZI "+jokalariTxanda);
+                        this.irabazi();
+                        stop=true;
                     }
                 }
             }
@@ -645,7 +753,8 @@ public class TableroaKud implements Initializable {
             if((zutabea+1)<=8){
                 if(m[zutabea+1][ilara]){
                     irabazi=true;
-                    System.out.println("IRABAZI "+jokalariTxanda);
+                    this.irabazi();
+                    stop=true;
                 }
             }
         }
@@ -661,7 +770,8 @@ public class TableroaKud implements Initializable {
                         if((ilara-3)>=0){
                             if(m[zutabea][ilara-3]){
                                 irabazi=true;
-                                System.out.println("IRABAZI "+jokalariTxanda);
+                                this.irabazi();
+                                stop=true;
                             }else{
                                 outNon=3;
                             }
@@ -686,7 +796,8 @@ public class TableroaKud implements Initializable {
                     if(m[zutabea][ilara+2]){
                         if(m[zutabea][ilara+3]){
                             irabazi=true;
-                            System.out.println("IRABAZI "+jokalariTxanda);
+                            this.irabazi();
+                            stop=true;
                         }
                     }
                 }
@@ -696,7 +807,8 @@ public class TableroaKud implements Initializable {
                 if(m[zutabea][ilara+1]){
                     if(m[zutabea][ilara+2]){
                         irabazi=true;
-                        System.out.println("IRABAZI "+jokalariTxanda);
+                        this.irabazi();
+                        stop=true;
                     }
                 }
             }
@@ -704,7 +816,8 @@ public class TableroaKud implements Initializable {
             if((ilara+1)<=5){
                 if(m[zutabea][ilara+1]){
                     irabazi=true;
-                    System.out.println("IRABAZI "+jokalariTxanda);
+                    this.irabazi();
+                    stop=true;
                 }
             }
         }
@@ -719,7 +832,8 @@ public class TableroaKud implements Initializable {
                         if((zutabea-3)>=0&&(ilara+3)<=5){
                             if(m[zutabea-3][ilara+3]){
                                 irabazi=true;
-                                System.out.println("IRABAZI "+jokalariTxanda);
+                                this.irabazi();
+                                stop=true;
                             }else{
                                 outNon=3;
                             }
@@ -744,7 +858,8 @@ public class TableroaKud implements Initializable {
                     if(m[zutabea+2][ilara-2]){
                         if(m[zutabea+3][ilara-3]){
                             irabazi=true;
-                            System.out.println("IRABAZI "+jokalariTxanda);
+                            this.irabazi();
+                            stop=true;
                         }
                     }
                 }
@@ -754,14 +869,17 @@ public class TableroaKud implements Initializable {
                 if(m[zutabea+1][ilara-1]){
                     if(m[zutabea+2][ilara-2]){
                         irabazi=true;
-                        System.out.println("IRABAZI "+jokalariTxanda);
+                        this.irabazi();
+                        stop=true;
                     }
                 }
             }
         }else if(outNon==3){
             if((zutabea+1)<=8&&(ilara-1)>=0){
                 if(m[zutabea+1][ilara-1]){
-                    irabazi=true;System.out.println("IRABAZI "+jokalariTxanda);
+                    irabazi=true;
+                    this.irabazi();
+                    stop=true;
                 }
             }
         }
@@ -781,7 +899,8 @@ public class TableroaKud implements Initializable {
                         if((ilara-3)>=0&&(zutabea-3)>=0){
                             if(m[zutabea-3][ilara-3]){
                                 irabazi=true;
-                                System.out.println("IRABAZI "+jokalariTxanda);
+                                this.irabazi();
+                                stop=true;
                             }else{
                                 outNon=3;
                             }
@@ -806,7 +925,8 @@ public class TableroaKud implements Initializable {
                     if(m[zutabea+2][ilara+2]){
                         if(m[zutabea+3][ilara+3]){
                             irabazi=true;
-                            System.out.println("IRABAZI "+jokalariTxanda);
+                            this.irabazi();
+                            stop=true;
                         }
                     }
                 }
@@ -816,7 +936,8 @@ public class TableroaKud implements Initializable {
                 if(m[zutabea+1][ilara+1]){
                     if(m[zutabea+2][ilara+2]){
                         irabazi=true;
-                        System.out.println("IRABAZI "+jokalariTxanda);
+                        this.irabazi();
+                        stop=true;
                     }
                 }
             }
@@ -824,15 +945,41 @@ public class TableroaKud implements Initializable {
             if((ilara+1)<=5&&(zutabea+1)<=8){
                 if(m[zutabea+1][ilara+1]){
                     irabazi=true;
-                    System.out.println("IRABAZI "+jokalariTxanda);
+                    this.irabazi();
+                    stop=true;
                 }
             }
         }
 
     }
 
+    private void irabazi() { //SOLO SALEN LAS TRISTES SI GANA EL ORDENADOR, CON 2JOK SALE EL DE GANAR
+        mainApp.pantailaHanditu();
+        System.out.println("IRABAZI "+jokalariTxanda.getText());
+        if(jokalariTxanda.getText().equals("Ordenagailua")){
+            triste.setVisible(true);
+        }else{
+            suziri1.setVisible(true);
+            suziri2.setVisible(true);
+            suziri3.setVisible(true);
+            suziri4.setVisible(true);
+            suziri5.setVisible(true);
+            suziri6.setVisible(true);
+            irabaziLabel.setVisible(true);
+            if(!nondik.equals("BiJok")){
+                irabaziLabel.setText("ZORIONAK!! \n"+jokalariTxanda.getText());
+            }
+            berrizB.setVisible(true);
+        }
+        berrizB.setVisible(true);
 
-    public void ordenagailuaItzaron(){  //Hay que meterlo en algun lado. pero no pillo dnd
+        if(!nondik.equals("BiJok")) {
+            rankingB.setVisible(true);
+        }
+    }
+
+
+    public void ordenagailuaItxaron(){  //Hay que meterlo en algun lado. pero no pillo dnd
         if(jokalaria==2){
             if(jok2.equals("Ordenagailua")){
                 try {
@@ -845,5 +992,287 @@ public class TableroaKud implements Initializable {
     }
 
 
+    public void clickMenuBiJok(ActionEvent actionEvent) {
+        if(!nondik.equals("BiJok")) {
+            mainApp.tableroaKargatu("Jokalari 1", "Jokalari 2", "BiJok");
+        }else{
+            System.out.println("Joko modu horretan zaude jada");
+        }
+        //podemos poner que si ya esta salte una pantalla de ya estas en ese modo seguro q quieres reiniarlo?. o no reiniciarlo
+    }
+
+    public void clickMenuJOErraza(ActionEvent actionEvent) {
+        if(!nondik.equals("JOErraza")) {
+            mainApp.tableroaKargatu("Jokalari 1","Ordenagailua","JOErraza");
+        }else{
+            System.out.println("Joko modu horretan zaude jada");
+        }
+    }
+
+    public void clickMenuJOZaila(ActionEvent actionEvent) {
+        if(!nondik.equals("JOZaila")) {
+            mainApp.tableroaKargatu("Jokalari 1","Ordenagailua","JOZaila");
+        }else{
+            System.out.println("Joko modu horretan zaude jada");
+        }
+    }
+
+    public void clickBerrabiarazi(ActionEvent actionEvent) {
+        mainApp.pantailaTxikitu();
+        if(nondik.equals("BiJok")) {
+            mainApp.tableroaKargatu("Jokalari 1", "Jokalari 2", "BiJok");
+        }else if(nondik.equals("JOErraza")) {
+            mainApp.tableroaKargatu("Jokalari 1","Ordenagailua","JOErraza");
+        }else if(nondik.equals("JOZaila")) {
+            mainApp.tableroaKargatu("Jokalari 1","Ordenagailua","JOZaila");
+        }else{
+            System.out.println("Erroreren bat egon da");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Kronometroa
+    //opcion 1. aunq igual parece q hemos copiado jajaj
+    public void start() {
+        // Configure the Label
+        // Bind the timerLabel text property to the timeSeconds property
+        Timeline timeline;
+        DoubleProperty timeSeconds = new SimpleDoubleProperty();
+        Duration[] time = {Duration.ZERO};
+
+        timeSeconds.set(time[0].toSeconds());
+        timerLabel.textProperty().bind(timeSeconds.asString());
+
+
+        timeline = new Timeline(
+                new KeyFrame(Duration.millis(100),
+                        new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent t) {
+                        if(!stop){
+                            Duration duration = ((KeyFrame) t.getSource()).getTime();
+                            time[0] = time[0].add(duration);
+                            timeSeconds.set(time[0].toSeconds());
+                        }
+                    }
+                })
+        );
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
+    }
+
+
+
+
+
+
+    //gezien koloreak botoian
+    //todos igual en el css: pero asi diferencia colores y tal
+    //.button:hover{
+    //    -fx-graphic: url("flecha.png" );
+    //}
+
+    public void zortziEntered(MouseEvent mouseEvent) {
+        if (jokalaria == 1) {
+            b08.setGraphic(flechaRoja);
+        } else {
+            b08.setGraphic(flechaAzul);
+        }
+        actualButton=b08;
+
+    }
+
+
+    public void zortziExited(MouseEvent mouseEvent) {
+        ImageView w=new ImageView();
+        b08.setGraphic(w);
+        actualButton=null;
+    }
+
+    public void zazpiEntered(MouseEvent mouseEvent) {
+        if (jokalaria == 1) {
+            b01.setGraphic(flechaRoja);
+        }else{
+            b01.setGraphic(flechaAzul);
+        }
+        actualButton=b01;
+    }
+
+    public void zazpiExited(MouseEvent mouseEvent) {
+        ImageView w=new ImageView();
+        b01.setGraphic(w);
+        actualButton=null;
+    }
+
+    public void seiEntered(MouseEvent mouseEvent) {
+        if (jokalaria == 1) {
+            b07.setGraphic(flechaRoja);
+        }else{
+            b07.setGraphic(flechaAzul);
+        }
+        actualButton=b07;
+    }
+
+    public void seiExited(MouseEvent mouseEvent) {
+        ImageView w=new ImageView();
+        b07.setGraphic(w);
+        actualButton=null;
+    }
+
+    public void bostEntered(MouseEvent mouseEvent) {
+        if (jokalaria == 1) {
+            b06.setGraphic(flechaRoja);
+        }else{
+            b06.setGraphic(flechaAzul);
+        }
+        actualButton=b06;
+    }
+
+    public void bostExited(MouseEvent mouseEvent) {
+        ImageView w=new ImageView();
+        b06.setGraphic(w);
+        actualButton=null;
+    }
+
+    public void lauEntered(MouseEvent mouseEvent) {
+        if (jokalaria == 1) {
+            b05.setGraphic(flechaRoja);
+        }else{
+            b05.setGraphic(flechaAzul);
+        }
+        actualButton=b05;
+    }
+
+    public void lauExited(MouseEvent mouseEvent) {
+        ImageView w=new ImageView();
+        b05.setGraphic(w);
+        actualButton=null;
+    }
+
+    public void hiruEntered(MouseEvent mouseEvent) {
+        if (jokalaria == 1) {
+            b04.setGraphic(flechaRoja);
+        }else{
+            b04.setGraphic(flechaAzul);
+        }
+        actualButton=b04;
+    }
+
+    public void hiruExited(MouseEvent mouseEvent) {
+        ImageView w=new ImageView();
+        b04.setGraphic(w);
+        actualButton=null;
+    }
+
+    public void biEntered(MouseEvent mouseEvent) {
+        if (jokalaria == 1) {
+            b03.setGraphic(flechaRoja);
+        }else{
+            b03.setGraphic(flechaAzul);
+        }
+        actualButton=b03;
+    }
+
+    public void biExited(MouseEvent mouseEvent) {
+        ImageView w=new ImageView();
+        b03.setGraphic(w);
+        actualButton=null;
+    }
+
+    public void batEntered(MouseEvent mouseEvent) {
+        if (jokalaria == 1) {
+            b02.setGraphic(flechaRoja);
+        }else{
+            b02.setGraphic(flechaAzul);
+        }
+        actualButton=b02;
+    }
+
+    public void batExited(MouseEvent mouseEvent) {
+        ImageView w=new ImageView();
+        b02.setGraphic(w);
+        actualButton=null;
+    }
+
+    public void zeroEntered(MouseEvent mouseEvent) {
+        if (jokalaria == 1) {
+            b0.setGraphic(flechaRoja);
+        }else{
+            b0.setGraphic(flechaAzul);
+        }
+        actualButton=b0;
+    }
+
+    public void zeroExited(MouseEvent mouseEvent) {
+        ImageView w=new ImageView();
+        b0.setGraphic(w);
+        actualButton=null;
+    }
+
+    public void berrizClick(ActionEvent actionEvent) {
+        this.clickBerrabiarazi(actionEvent);
+        suziri1.setVisible(false);
+        suziri2.setVisible(false);
+        suziri3.setVisible(false);
+        suziri4.setVisible(false);
+        suziri5.setVisible(false);
+        suziri6.setVisible(false);
+        triste.setVisible(false);
+        irabaziLabel.setVisible(false);
+        berrizB.setVisible(false);
+
+    }
+
+    public void rankingClick(ActionEvent actionEvent) {
+        labelIzena.setVisible(true);
+        IzenaSartu.setVisible(true);
+        OK.setVisible(true);
+
+    }
+
+    public void okClick(ActionEvent actionEvent) {
+        //izena sartu du jada
+        if(!IzenaSartu.getText().equals("")){  //izen bat sartu badu
+            labelIzena.setVisible(false);
+            IzenaSartu.setVisible(false);
+            OK.setVisible(false);
+            taula.setVisible(true);
+            labelRanking.setVisible(true);
+            mainApp.rankingBistaratu(IzenaSartu.getText(),timerLabel.getText());
+        }else{
+            labelIzena.setText("Izena berriz sartu:");
+        }
+    }
+
+
+    public class RemindTask extends TimerTask {
+        private Timer timer;
+        public void run() {
+            timer=new Timer();
+            ordenagailuarenTxanda();
+            timer.cancel(); //Terminate the timer thread
+        }
+    }
 
 }

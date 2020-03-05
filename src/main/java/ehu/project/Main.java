@@ -1,8 +1,6 @@
 package ehu.project;
 
-import ehu.project.controller.ui.HasieraKud;
-import ehu.project.controller.ui.IzenakHautatuKud;
-import ehu.project.controller.ui.TableroaKud;
+import ehu.project.ui.TableroaKud;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,14 +12,10 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-  private Parent hasiera;
-  private Parent izenakHautatu;
   private Parent tableroa;
 
   private Stage stage;
 
-  private HasieraKud hasieraKud;
-  private IzenakHautatuKud izenakHautatuKud;
   private TableroaKud tableroaKud;
 
 
@@ -30,22 +24,16 @@ public class Main extends Application {
     stage = primaryStage;
     pantailakKargatu();
 
-    stage.setTitle("Conecta4");
-    stage.setScene(new Scene(hasiera));
+    stage.setTitle("4ncane");
+    tableroaKud.hasieratu("Jokalari 1","Jokalari 2","BiJok");
+
+    stage.setScene(new Scene(tableroa));
+    stage.setWidth(610);
+    stage.setHeight(640);
     stage.show();
   }
 
   private void pantailakKargatu() throws IOException {
-
-    FXMLLoader loaderHasiera = new FXMLLoader(getClass().getResource("/view/hasiera.fxml"));
-    hasiera = (Parent) loaderHasiera.load();
-    hasieraKud = loaderHasiera.getController();
-    hasieraKud.setMainApp(this);
-
-    FXMLLoader loaderIzenakHautatu = new FXMLLoader(getClass().getResource("/view/izenakHautatu.fxml"));
-    izenakHautatu = (Parent) loaderIzenakHautatu.load();
-    izenakHautatuKud = loaderIzenakHautatu.getController();
-    izenakHautatuKud.setMainApp(this);
 
     FXMLLoader loaderTablero = new FXMLLoader(getClass().getResource("/view/tableroa.fxml"));
     tableroa = (Parent) loaderTablero.load();
@@ -58,14 +46,6 @@ public class Main extends Application {
     launch(args);
   }
 
-  public void izenakHautatuKargatu(String nondik){
-    Parent root = new AnchorPane(izenakHautatu);
-    izenakHautatuKud.hasieratu(nondik);
-    stage.setScene(new Scene(root));
-    stage.show();
-
-
-  }
 
   public void tableroaKargatu(String j1,String j2,String nondik){
     Parent root = new AnchorPane(tableroa);
@@ -74,7 +54,17 @@ public class Main extends Application {
     stage.show();
   }
 
+public void pantailaTxikitu(){
+  stage.setWidth(610);
+  stage.setHeight(640);
+}
+public void pantailaHanditu(){
+  stage.setWidth(910);
+  stage.setHeight(640);
+}
 
-
+public void rankingBistaratu(String izena, String denbora){
+    //llamar al kudeatzaile para q ejecute ese metodo jaja
+}
 
 }

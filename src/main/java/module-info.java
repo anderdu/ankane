@@ -3,4 +3,5 @@ open module ankane {
   requires javafx.graphics;
   requires javafx.fxml;
   requires java.sql;
+    requires java.desktop;
 }
