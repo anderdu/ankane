@@ -1062,11 +1062,12 @@ public class TableroaKud implements Initializable {
     //Kronometroa
     //opcion 1. aunq igual parece q hemos copiado jajaj
     public void start() {
-        Timeline timeline;
+        Timeline timeline=null;
 
         final int[] min = {0};
         final int[] seg = {0};
         final int[] milli = {0};
+
 
         timeline = new Timeline(
                 new KeyFrame(Duration.millis(100),
@@ -1075,7 +1076,6 @@ public class TableroaKud implements Initializable {
                     public void handle(ActionEvent t) {
                         if(!stop){
                             Duration duration = ((KeyFrame) t.getSource()).getTime();
-                            System.out.println(duration);
                             milli[0] = milli[0]+(int)duration.toMillis()-99;
                             if(milli[0] >9){
                                 milli[0]=0;
@@ -1105,6 +1105,7 @@ public class TableroaKud implements Initializable {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
+        //sera porq hay q meter el stop pero esq no sé como meterlo
     }
 
 
@@ -1265,6 +1266,7 @@ public class TableroaKud implements Initializable {
         triste.setVisible(false);
         irabaziLabel.setVisible(false);
         berrizB.setVisible(false);
+        stop=false;
 
     }
 
@@ -1284,18 +1286,7 @@ public class TableroaKud implements Initializable {
             taula.setVisible(true);
             labelRanking.setVisible(true);
 
-            //esto de pasar de string a time no sé si está bien. habra q mirarlo con calma
-            SimpleDateFormat format = new SimpleDateFormat("mm:ss:SS"); //segundos, microsegundos. tambien habria q meter minutos I think
-            Date d1 = null;
-            try {
-                d1 = format.parse(timerLabel.getText());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            java.sql.Time timeEgokia = new java.sql.Time(d1.getTime());
-
-
-            ObservableList<Taula>  taulaDatuak= DBKud.getInstantzia().rankingErakutsi(IzenaSartu.getText(),timeEgokia,nondik);
+            ObservableList<Taula>  taulaDatuak= DBKud.getInstantzia().rankingErakutsi(IzenaSartu.getText(),timerLabel.getText(),nondik);
 
             //taula bete
 

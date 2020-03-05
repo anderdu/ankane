@@ -26,7 +26,7 @@ public class DBKud {
 
 
 
-    public void gehituDatubasera(String izena, Time denbora, String jokoMota){  //hay q pasar la denbora a TIME
+    public void gehituDatubasera(String izena, String denbora, String jokoMota){  //hay q pasar la denbora a TIME
         DBKudeatzaileSQLITE dbkud = DBKudeatzaileSQLITE.getInstantzia();
         if(jokoMota.equals("JOErraza")){
             String query ="INSERT INTO JOErrazaRanking VALUES('"+izena+"','"+denbora+"');";
@@ -39,7 +39,7 @@ public class DBKud {
         }
     }
 
-    public void ezabatuDatuBasetik(String izena, Time denbora, String jokoMota){  //hay q pasar la denbora a TIME
+    public void ezabatuDatuBasetik(String izena, String denbora, String jokoMota){  //hay q pasar la denbora a TIME
         DBKudeatzaileSQLITE dbkud = DBKudeatzaileSQLITE.getInstantzia();
         if(jokoMota.equals("JOErraza")){
             String query ="DELETE FROM JOErrazaRanking WHERE JokIzena='"+izena+"' AND Denbora='"+denbora+"';";
@@ -89,7 +89,7 @@ public class DBKud {
 
     }
 
-    public void konprobatuRankinga(String izena, Time denbora, String jokoMota){
+    public void konprobatuRankinga(String izena, String denbora, String jokoMota){
         DBKudeatzaileSQLITE dbkud =DBKudeatzaileSQLITE.getInstantzia();
         if(jokoMota.equals("JOErraza")){
             String query ="SELECT * FROM JOErrazaRanking ORDER BY Denbora DESC";  //nos los ordena de manera descendente. para coger la denbora del del topn 10
@@ -97,9 +97,9 @@ public class DBKud {
             try {
                 if(rs.next()) {
                     String izenaRank10 = rs.getString("JokIzena");
-                    Time denbRank10 = rs.getTime("Denbora");
+                    String denbRank10 = rs.getString("Denbora");
 
-                    if (denbRank10.after(denbora)) {  //si el tiempo del del top10 es mas que el de denbora. tenemos que eliminar ese y meter el nuevo
+                    if (denbRank10.compareTo(denbora)==1) {  //si el tiempo del del top10 es mas que el de denbora. tenemos que eliminar ese y meter el nuevo
                         ezabatuDatuBasetik(izenaRank10, denbRank10, jokoMota);  //datu basetik ezabatuko dugu top10
                         gehituDatubasera(izena, denbora, jokoMota); //denbora berria gehituko dugu db-ra
                     }
@@ -115,9 +115,9 @@ public class DBKud {
             try {
                 if(rs.next()) {
                     String izenaRank10 = rs.getString("JokIzena");
-                    Time denbRank10 = rs.getTime("Denbora");
+                    String denbRank10 = rs.getString("Denbora");
 
-                    if (denbRank10.after(denbora)) {  //si el tiempo del del top10 es mas que el de denbora. tenemos que eliminar ese y meter el nuevo
+                    if (denbRank10.compareTo(denbora)==1) {  //si es mas pequeño denbRank10 devuelve -1. si es =1 significa q el del rank10 es mas grande
                         ezabatuDatuBasetik(izenaRank10, denbRank10, jokoMota);  //datu basetik ezabatuko dugu top10
                         gehituDatubasera(izena, denbora, jokoMota); //denbora berria gehituko dugu db-ra
                     }
@@ -132,7 +132,7 @@ public class DBKud {
     }
 
 
-    public ObservableList<Taula> rankingErakutsi(String izena, Time denbora, String jokoMota){
+    public ObservableList<Taula> rankingErakutsi(String izena, String denbora, String jokoMota){
         if(hamarBainoGehioDaudenKonprobatu(jokoMota)){
             konprobatuRankinga(izena,denbora,jokoMota);
         }else{
@@ -151,7 +151,7 @@ public class DBKud {
                 while (rs.next()) {
                     pos++;
                     String JokIzenaT = rs.getString("JokIzena");
-                    Time DenboraT = rs.getTime("Denbora");
+                    String DenboraT = rs.getString("Denbora");
 
                     Taula t = new Taula(pos,JokIzenaT, DenboraT);
                     emaitza.add(t);
@@ -170,7 +170,7 @@ public class DBKud {
                 while (rs.next()) {
                     pos++;
                     String JokIzenaT = rs.getString("JokIzena");
-                    Time DenboraT = rs.getTime("Denbora");
+                    String DenboraT = rs.getString("Denbora");
 
                     Taula t = new Taula(pos,JokIzenaT, DenboraT);
                     emaitza.add(t);

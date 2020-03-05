@@ -6,9 +6,9 @@ public class Taula {
 
     private Integer pos;
     private String izena;
-    private Time denbora;
+    private String denbora;
 
-    public Taula(Integer pos,String izena, Time denbora) {
+    public Taula(Integer pos,String izena, String denbora) {
         this.pos=pos;
         this.izena = izena;
         this.denbora = denbora;
@@ -22,7 +22,7 @@ public class Taula {
         return izena;
     }
 
-    public Time getDenbora() {
+    public String getDenbora() {
         return denbora;
     }
 }
