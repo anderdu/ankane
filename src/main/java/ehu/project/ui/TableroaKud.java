@@ -1085,7 +1085,19 @@ public class TableroaKud implements Initializable {
                                 seg[0]=0;
                                 min[0]++;
                             }
-                            timerLabel.setText(""+ min[0] +":"+ seg[0] +":"+ milli[0]);
+                            if(seg[0]<=9){
+                                if(min[0]<=9){
+                                    timerLabel.setText(""+ 0+min[0] +":"+ 0+seg[0] +":"+0+ milli[0]);
+                                }else{
+                                    timerLabel.setText(""+ min[0] +":"+ 0+seg[0] +":"+0+ milli[0]);
+                                }
+                            }else {
+                                if(min[0]<=9) {
+                                    timerLabel.setText("" + 0+min[0] + ":" + seg[0] + ":" + 0 + milli[0]);
+                                }else{
+                                    timerLabel.setText("" + min[0] + ":" + seg[0] + ":" + 0 + milli[0]);
+                                }
+                            }
                         }
                     }
                 })
