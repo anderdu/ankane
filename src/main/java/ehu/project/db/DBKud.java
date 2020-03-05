@@ -53,6 +53,41 @@ public class DBKud {
     }
 
 
+    public boolean hamarBainoGehioDaudenKonprobatu(String jokoMota){
+        DBKudeatzaileSQLITE dbkud =DBKudeatzaileSQLITE.getInstantzia();
+        boolean emaitza=false;
+        int count=0;
+        if(jokoMota.equals("JOErraza")){
+            String query ="SELECT * FROM JOErrazaRanking";
+            ResultSet rs =dbkud.execSQL(query);
+            try {
+                while(rs.next()) {
+                    count++;
+                }
+            } catch (SQLException e) {
+                System.out.println("Oraindik ez daude daturik");
+            }
+
+
+        }else if(jokoMota.equals("JOZaila")){
+            String query ="SELECT * FROM JOZailaRanking ORDER BY Denbora DESC";
+            ResultSet rs =dbkud.execSQL(query);
+            try {
+                while(rs.next()) {
+                    count++;
+                }
+            } catch (SQLException e) {
+                System.out.println("Oraindik ez daude daturik");
+            }
+        }else{
+            System.out.println("Erroreren bat egon da");
+        }
+        if(count>=10){
+            emaitza=true;
+        }
+        return emaitza;
+
+    }
 
     public void konprobatuRankinga(String izena, Time denbora, String jokoMota){
         DBKudeatzaileSQLITE dbkud =DBKudeatzaileSQLITE.getInstantzia();
@@ -60,16 +95,17 @@ public class DBKud {
             String query ="SELECT * FROM JOErrazaRanking ORDER BY Denbora DESC";  //nos los ordena de manera descendente. para coger la denbora del del topn 10
             ResultSet rs =dbkud.execSQL(query);
             try {
-                rs.next();
-                String izenaRank10=rs.getString("JokIzena");
-                Time denbRank10 = rs.getTime("Denbora");
+                if(rs.next()) {
+                    String izenaRank10 = rs.getString("JokIzena");
+                    Time denbRank10 = rs.getTime("Denbora");
 
-                if(denbRank10.after(denbora)) {  //si el tiempo del del top10 es mas que el de denbora. tenemos que eliminar ese y meter el nuevo
-                    ezabatuDatuBasetik(izenaRank10,denbRank10,jokoMota);  //datu basetik ezabatuko dugu top10
-                    gehituDatubasera(izena, denbora,jokoMota); //denbora berria gehituko dugu db-ra
+                    if (denbRank10.after(denbora)) {  //si el tiempo del del top10 es mas que el de denbora. tenemos que eliminar ese y meter el nuevo
+                        ezabatuDatuBasetik(izenaRank10, denbRank10, jokoMota);  //datu basetik ezabatuko dugu top10
+                        gehituDatubasera(izena, denbora, jokoMota); //denbora berria gehituko dugu db-ra
+                    }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println("Oraindik ez daude daturik");
             }
 
 
@@ -77,16 +113,17 @@ public class DBKud {
             String query ="SELECT * FROM JOZailaRanking ORDER BY Denbora DESC";  //nos los ordena de manera descendente. para coger la denbora del del topn 10
             ResultSet rs =dbkud.execSQL(query);
             try {
-                rs.next();
-                String izenaRank10=rs.getString("JokIzena");
-                Time denbRank10 = rs.getTime("Denbora");
+                if(rs.next()) {
+                    String izenaRank10 = rs.getString("JokIzena");
+                    Time denbRank10 = rs.getTime("Denbora");
 
-                if(denbRank10.after(denbora)) {  //si el tiempo del del top10 es mas que el de denbora. tenemos que eliminar ese y meter el nuevo
-                    ezabatuDatuBasetik(izenaRank10,denbRank10,jokoMota);  //datu basetik ezabatuko dugu top10
-                    gehituDatubasera(izena, denbora,jokoMota); //denbora berria gehituko dugu db-ra
+                    if (denbRank10.after(denbora)) {  //si el tiempo del del top10 es mas que el de denbora. tenemos que eliminar ese y meter el nuevo
+                        ezabatuDatuBasetik(izenaRank10, denbRank10, jokoMota);  //datu basetik ezabatuko dugu top10
+                        gehituDatubasera(izena, denbora, jokoMota); //denbora berria gehituko dugu db-ra
+                    }
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                System.out.println("Oraindik ez daude daturik");
             }
         }else{
             System.out.println("Erroreren bat egon da");
@@ -96,7 +133,11 @@ public class DBKud {
 
 
     public ObservableList<Taula> rankingErakutsi(String izena, Time denbora, String jokoMota){
-        konprobatuRankinga(izena,denbora,jokoMota);
+        if(hamarBainoGehioDaudenKonprobatu(jokoMota)){
+            konprobatuRankinga(izena,denbora,jokoMota);
+        }else{
+            gehituDatubasera(izena, denbora, jokoMota);
+        }
 
         //bete taula top10 berriarekin
         ObservableList<Taula> emaitza = FXCollections.observableArrayList();

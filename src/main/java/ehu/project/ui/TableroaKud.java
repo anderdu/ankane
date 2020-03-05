@@ -1062,15 +1062,11 @@ public class TableroaKud implements Initializable {
     //Kronometroa
     //opcion 1. aunq igual parece q hemos copiado jajaj
     public void start() {
-        // Configure the Label
-        // Bind the timerLabel text property to the timeSeconds property
         Timeline timeline;
-        DoubleProperty timeSeconds = new SimpleDoubleProperty();
-        Duration[] time = {Duration.ZERO};
 
-        timeSeconds.set(time[0].toSeconds());
-        timerLabel.textProperty().bind(timeSeconds.asString());
-
+        final int[] min = {0};
+        final int[] seg = {0};
+        final int[] milli = {0};
 
         timeline = new Timeline(
                 new KeyFrame(Duration.millis(100),
@@ -1079,8 +1075,17 @@ public class TableroaKud implements Initializable {
                     public void handle(ActionEvent t) {
                         if(!stop){
                             Duration duration = ((KeyFrame) t.getSource()).getTime();
-                            time[0] = time[0].add(duration);
-                            timeSeconds.set(time[0].toSeconds());
+                            System.out.println(duration);
+                            milli[0] = milli[0]+(int)duration.toMillis()-99;
+                            if(milli[0] >9){
+                                milli[0]=0;
+                                seg[0]++;
+                            }
+                            if(seg[0]>59){
+                                seg[0]=0;
+                                min[0]++;
+                            }
+                            timerLabel.setText(""+ min[0] +":"+ seg[0] +":"+ milli[0]);
                         }
                     }
                 })
@@ -1089,7 +1094,6 @@ public class TableroaKud implements Initializable {
         timeline.play();
 
     }
-
 
 
 
@@ -1269,14 +1273,15 @@ public class TableroaKud implements Initializable {
             labelRanking.setVisible(true);
 
             //esto de pasar de string a time no sé si está bien. habra q mirarlo con calma
-            SimpleDateFormat format = new SimpleDateFormat("ss:SS"); //segundos, microsegundos. tambien habria q meter minutos I think
+            SimpleDateFormat format = new SimpleDateFormat("mm:ss:SS"); //segundos, microsegundos. tambien habria q meter minutos I think
             Date d1 = null;
             try {
-                d1 = (Date)format.parse(timerLabel.getText());
+                d1 = format.parse(timerLabel.getText());
             } catch (ParseException e) {
                 e.printStackTrace();
             }
             java.sql.Time timeEgokia = new java.sql.Time(d1.getTime());
+
 
             ObservableList<Taula>  taulaDatuak= DBKud.getInstantzia().rankingErakutsi(IzenaSartu.getText(),timeEgokia,nondik);
 
