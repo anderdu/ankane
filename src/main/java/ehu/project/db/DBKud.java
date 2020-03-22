@@ -70,7 +70,7 @@ public class DBKud {
 
 
         }else if(jokoMota.equals("JOZaila")){
-            String query ="SELECT * FROM JOZailaRanking ORDER BY Denbora DESC";
+            String query ="SELECT * FROM JOZailaRanking";
             ResultSet rs =dbkud.execSQL(query);
             try {
                 while(rs.next()) {
