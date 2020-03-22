@@ -53,6 +53,11 @@ public class Main extends Application {
 
 
   public void tableroaKargatu(String j1,String j2,String nondik){
+    try {
+      pantailakKargatu();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     Parent root = new AnchorPane(tableroa);
     tableroaKud.hasieratu(j1,j2,nondik);
     stage.setScene(new Scene(root));
