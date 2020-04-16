@@ -1029,19 +1029,6 @@ public class TableroaKud implements Initializable {
     }
 
 
-    public void ordenagailuaItxaron(){  //Hay que meterlo en algun lado. pero no pillo dnd
-        if(jokalaria==2){
-            if(jok2.equals("Ordenagailua")){
-                try {
-                    Thread.sleep(400);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-
     public void clickMenuBiJok(ActionEvent actionEvent) {
         if(!nondik.equals("BiJok")) {
             mainApp.tableroaKargatu("Jokalari 1", "Jokalari 2", "BiJok");
@@ -1084,32 +1071,12 @@ public class TableroaKud implements Initializable {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //Kronometroa
-    //opcion 1. aunq igual parece q hemos copiado jajaj
     public void start() {
         Timeline timeline=null;
-
         final int[] min = {0};
         final int[] seg = {0};
         final int[] milli = {0};
-
 
         timeline = new Timeline(
                 new KeyFrame(Duration.millis(100),
@@ -1147,14 +1114,7 @@ public class TableroaKud implements Initializable {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
-        //sera porq hay q meter el stop pero esq no sé como meterlo
     }
-
-
-
-
-
-
 
 
 
@@ -1223,7 +1183,7 @@ public class TableroaKud implements Initializable {
 //BOTOIAREN GEINEAN ZAUDELA ADIERAZI. MOUSE NAIZ KEYBOARD
 
     //gezien koloreak botoian
-    //todos igual en el css: pero asi diferencia colores y tal
+    //todos igual en el css. Pero en el css no puedes diferenciar los colores y aqui si
     //.button:hover{
     //    -fx-graphic: url("flecha.png" );
     //}
@@ -1255,7 +1215,6 @@ public class TableroaKud implements Initializable {
         zeroExited();
     }
 
-
     //bat
     public void batEntered() {
         if (jokalaria == 1) {
@@ -1282,7 +1241,6 @@ public class TableroaKud implements Initializable {
         batEntered();
     }
 
-
     //bi
     public void biEntered() {
         if (jokalaria == 1) {
@@ -1308,7 +1266,6 @@ public class TableroaKud implements Initializable {
     public void biKeyEntered(KeyEvent keyEvent) {
         biEntered();
     }
-
 
     //hiru
     public void hiruEntered() {
@@ -1388,7 +1345,6 @@ public class TableroaKud implements Initializable {
         bostEntered();
     }
 
-
     //sei
     public void seiEntered() {
         if (jokalaria == 1) {
@@ -1414,7 +1370,6 @@ public class TableroaKud implements Initializable {
     public void seiKeyEntered(KeyEvent keyEvent) {
         seiEntered();
     }
-
 
     //zazpi
     public void zazpiEntered() {
@@ -1467,6 +1422,7 @@ public class TableroaKud implements Initializable {
     public void zortziKeyEntered(KeyEvent keyEvent) {
         zortziEntered();
     }
+
 
 
     public class RemindTask extends TimerTask {
