@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -214,6 +215,7 @@ public class TableroaKud implements Initializable {
     private String jok2;
     private String nondik;
     private boolean blokeatuta;
+    private ImageView w=new ImageView();
 
     private static TableroaKud instantzia = new TableroaKud();
 
@@ -379,7 +381,7 @@ public class TableroaKud implements Initializable {
 
 
 
-        //Lo de IA. elegir en que zutabe tiene que meter la ficha
+        //Lo de IA. Elegir en que zutabe tiene que meter la ficha
 
 
 
@@ -1152,148 +1154,19 @@ public class TableroaKud implements Initializable {
 
 
 
-    //gezien koloreak botoian
-    //todos igual en el css: pero asi diferencia colores y tal
-    //.button:hover{
-    //    -fx-graphic: url("flecha.png" );
-    //}
-
-    public void zortziEntered(MouseEvent mouseEvent) {
-        if (jokalaria == 1) {
-            b08.setGraphic(flechaRoja);
-        } else {
-            b08.setGraphic(flechaAzul);
-        }
-        actualButton=b08;
-
-    }
 
 
-    public void zortziExited(MouseEvent mouseEvent) {
-        ImageView w=new ImageView();
-        b08.setGraphic(w);
-        actualButton=null;
-    }
 
-    public void zazpiEntered(MouseEvent mouseEvent) {
-        if (jokalaria == 1) {
-            b01.setGraphic(flechaRoja);
-        }else{
-            b01.setGraphic(flechaAzul);
-        }
-        actualButton=b01;
-    }
 
-    public void zazpiExited(MouseEvent mouseEvent) {
-        ImageView w=new ImageView();
-        b01.setGraphic(w);
-        actualButton=null;
-    }
 
-    public void seiEntered(MouseEvent mouseEvent) {
-        if (jokalaria == 1) {
-            b07.setGraphic(flechaRoja);
-        }else{
-            b07.setGraphic(flechaAzul);
-        }
-        actualButton=b07;
-    }
 
-    public void seiExited(MouseEvent mouseEvent) {
-        ImageView w=new ImageView();
-        b07.setGraphic(w);
-        actualButton=null;
-    }
 
-    public void bostEntered(MouseEvent mouseEvent) {
-        if (jokalaria == 1) {
-            b06.setGraphic(flechaRoja);
-        }else{
-            b06.setGraphic(flechaAzul);
-        }
-        actualButton=b06;
-    }
 
-    public void bostExited(MouseEvent mouseEvent) {
-        ImageView w=new ImageView();
-        b06.setGraphic(w);
-        actualButton=null;
-    }
 
-    public void lauEntered(MouseEvent mouseEvent) {
-        if (jokalaria == 1) {
-            b05.setGraphic(flechaRoja);
-        }else{
-            b05.setGraphic(flechaAzul);
-        }
-        actualButton=b05;
-    }
 
-    public void lauExited(MouseEvent mouseEvent) {
-        ImageView w=new ImageView();
-        b05.setGraphic(w);
-        actualButton=null;
-    }
 
-    public void hiruEntered(MouseEvent mouseEvent) {
-        if (jokalaria == 1) {
-            b04.setGraphic(flechaRoja);
-        }else{
-            b04.setGraphic(flechaAzul);
-        }
-        actualButton=b04;
-    }
 
-    public void hiruExited(MouseEvent mouseEvent) {
-        ImageView w=new ImageView();
-        b04.setGraphic(w);
-        actualButton=null;
-    }
 
-    public void biEntered(MouseEvent mouseEvent) {
-        if (jokalaria == 1) {
-            b03.setGraphic(flechaRoja);
-        }else{
-            b03.setGraphic(flechaAzul);
-        }
-        actualButton=b03;
-    }
-
-    public void biExited(MouseEvent mouseEvent) {
-        ImageView w=new ImageView();
-        b03.setGraphic(w);
-        actualButton=null;
-    }
-
-    public void batEntered(MouseEvent mouseEvent) {
-        if (jokalaria == 1) {
-            b02.setGraphic(flechaRoja);
-        }else{
-            b02.setGraphic(flechaAzul);
-        }
-        actualButton=b02;
-    }
-
-    public void batExited(MouseEvent mouseEvent) {
-        ImageView w=new ImageView();
-        b02.setGraphic(w);
-        actualButton=null;
-    }
-
-    public void zeroEntered(MouseEvent mouseEvent) {
-        if (jokalaria == 1) {
-            b0.setGraphic(flechaRoja);
-        }else{
-            b0.setGraphic(flechaAzul);
-        }
-        actualButton=b0;
-    }
-
-    public void zeroExited(MouseEvent mouseEvent) {
-        ImageView w=new ImageView();
-        b0.setGraphic(w);
-        actualButton=null;
-    }
 
     public void berrizClick(ActionEvent actionEvent) {
         this.clickBerrabiarazi(actionEvent);
@@ -1339,6 +1212,261 @@ public class TableroaKud implements Initializable {
         }else{
             labelIzena.setText("Izena berriz sartu:");
         }
+    }
+
+
+
+
+
+
+
+//BOTOIAREN GEINEAN ZAUDELA ADIERAZI. MOUSE NAIZ KEYBOARD
+
+    //gezien koloreak botoian
+    //todos igual en el css: pero asi diferencia colores y tal
+    //.button:hover{
+    //    -fx-graphic: url("flecha.png" );
+    //}
+
+    //Zero botoiaren gainean zaudela adierazi
+    public void zeroEntered(){
+        if (jokalaria == 1) {
+            b0.setGraphic(flechaRoja);
+        }else{
+            b0.setGraphic(flechaAzul);
+        }
+        actualButton=b0;
+    }
+    public void zeroExited() {
+        ImageView w=new ImageView();
+        b0.setGraphic(w);
+        actualButton=null;
+    }
+    public void zeroEntered(MouseEvent mouseEvent) {
+        zeroEntered();
+    }
+    public void zeroExited(MouseEvent mouseEvent) {
+        zeroExited();
+    }
+    public void zeroKeyEntered(KeyEvent keyEvent) {
+        zeroEntered();
+    }
+    public void zeroKeyExited(KeyEvent keyEvent) {
+        zeroExited();
+    }
+
+
+    //bat
+    public void batEntered() {
+        if (jokalaria == 1) {
+            b02.setGraphic(flechaRoja);
+        }else{
+            b02.setGraphic(flechaAzul);
+        }
+        actualButton=b02;
+    }
+    public void batExited() {
+        ImageView w=new ImageView();
+        b02.setGraphic(w);
+        actualButton=null;
+    }
+    public void batEntered(MouseEvent mouseEvent) {
+        batEntered();
+    }
+    public void batExited(MouseEvent mouseEvent) {
+        batExited();
+    }
+    public void batKeyExited(KeyEvent keyEvent) {
+        batExited();
+    }
+    public void batKeyEntered(KeyEvent keyEvent) {
+        batEntered();
+    }
+
+
+    //bi
+    public void biEntered() {
+        if (jokalaria == 1) {
+            b03.setGraphic(flechaRoja);
+        }else{
+            b03.setGraphic(flechaAzul);
+        }
+        actualButton=b03;
+    }
+    public void biExited() {
+        b03.setGraphic(w);
+        actualButton=null;
+    }
+    public void biEntered(MouseEvent mouseEvent) {
+        biEntered();
+    }
+    public void biExited(MouseEvent mouseEvent) {
+        biExited();
+    }
+    public void biKeyExited(KeyEvent keyEvent) {
+        biExited();
+    }
+    public void biKeyEntered(KeyEvent keyEvent) {
+        biEntered();
+    }
+
+
+    //hiru
+    public void hiruEntered() {
+        if (jokalaria == 1) {
+            b04.setGraphic(flechaRoja);
+        }else{
+            b04.setGraphic(flechaAzul);
+        }
+        actualButton=b04;
+    }
+    public void hiruExited() {
+        b04.setGraphic(w);
+        actualButton=null;
+    }
+    public void hiruEntered(MouseEvent mouseEvent) {
+        hiruEntered();
+    }
+    public void hiruExited(MouseEvent mouseEvent) {
+        hiruExited();
+    }
+    public void hiruKeyExited(KeyEvent keyEvent) {
+        hiruExited();
+    }
+    public void hiruKeyEntered(KeyEvent keyEvent) {
+        hiruEntered();
+    }
+
+    //lau
+    public void lauEntered() {
+        if (jokalaria == 1) {
+            b05.setGraphic(flechaRoja);
+        }else{
+            b05.setGraphic(flechaAzul);
+        }
+        actualButton=b05;
+    }
+    public void lauExited() {
+        b05.setGraphic(w);
+        actualButton=null;
+    }
+    public void lauEntered(MouseEvent mouseEvent) {
+        lauEntered();
+    }
+    public void lauExited(MouseEvent mouseEvent) {
+        lauExited();
+    }
+    public void lauKeyExited(KeyEvent keyEvent) {
+        lauExited();
+    }
+    public void lauKeyEntered(KeyEvent keyEvent) {
+        lauEntered();
+    }
+
+    //bost
+    public void bostEntered() {
+        if (jokalaria == 1) {
+            b06.setGraphic(flechaRoja);
+        }else{
+            b06.setGraphic(flechaAzul);
+        }
+        actualButton=b06;
+    }
+    public void bostExited() {
+        b06.setGraphic(w);
+        actualButton=null;
+    }
+    public void bostEntered(MouseEvent mouseEvent) {
+        bostEntered();
+    }
+    public void bostExited(MouseEvent mouseEvent) {
+        bostExited();
+    }
+    public void bostKeyExited(KeyEvent keyEvent) {
+        bostExited();
+    }
+    public void bostKeyEntered(KeyEvent keyEvent) {
+        bostEntered();
+    }
+
+
+    //sei
+    public void seiEntered() {
+        if (jokalaria == 1) {
+            b07.setGraphic(flechaRoja);
+        }else{
+            b07.setGraphic(flechaAzul);
+        }
+        actualButton=b07;
+    }
+    public void seiExited() {
+        b07.setGraphic(w);
+        actualButton=null;
+    }
+    public void seiEntered(MouseEvent mouseEvent) {
+        seiEntered();
+    }
+    public void seiExited(MouseEvent mouseEvent) {
+        seiExited();
+    }
+    public void seiKeyExited(KeyEvent keyEvent) {
+        seiExited();
+    }
+    public void seiKeyEntered(KeyEvent keyEvent) {
+        seiEntered();
+    }
+
+
+    //zazpi
+    public void zazpiEntered() {
+        if (jokalaria == 1) {
+            b01.setGraphic(flechaRoja);
+        }else{
+            b01.setGraphic(flechaAzul);
+        }
+        actualButton=b01;
+    }
+    public void zazpiExited() {
+        b01.setGraphic(w);
+        actualButton=null;
+    }
+    public void zazpiEntered(MouseEvent mouseEvent) {
+        zazpiEntered();
+    }
+    public void zazpiExited(MouseEvent mouseEvent) {
+        zazpiExited();
+    }
+    public void zazpiKeyExited(KeyEvent keyEvent) {
+        zazpiExited();
+    }
+    public void zazpiKeyEntered(KeyEvent keyEvent) {
+        zazpiEntered();
+    }
+
+    //zortzi
+    public void zortziEntered() {
+        if (jokalaria == 1) {
+            b08.setGraphic(flechaRoja);
+        } else {
+            b08.setGraphic(flechaAzul);
+        }
+        actualButton=b08;
+    }
+    public void zortziExited() {
+        b08.setGraphic(w);
+        actualButton=null;
+    }
+    public void zortziEntered(MouseEvent mouseEvent) {
+        zortziEntered();
+    }
+    public void zortziExited(MouseEvent mouseEvent) {
+        zortziExited();
+    }
+    public void zortziKeyExited(KeyEvent keyEvent) {
+        zortziExited();
+    }
+    public void zortziKeyEntered(KeyEvent keyEvent) {
+        zortziEntered();
     }
 
 
