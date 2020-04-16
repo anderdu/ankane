@@ -302,8 +302,24 @@ public class TableroaKud implements Initializable {
         blokeatuta=false;
     }
 
+    public Circle kasillaLortu(int zutabea, int ilara){
+        if(zutabea==0){ if(ilara==0){return k00;}else if(ilara==1){return k01;} else if(ilara==2){return k02;} else if(ilara==3){return k03;} else if(ilara==4){return k04;} else if(ilara==5){return k05;}
+        } else if(zutabea==1){if(ilara==0){return k10;} else if(ilara==1){return k11;} else if(ilara==2){return k12;} else if(ilara==3){return k13;} else if(ilara==4){return k14;} else if(ilara==5){return k15;}
+        } else if(zutabea==2){if(ilara==0){return k20;} else if(ilara==1){return k21;} else if(ilara==2){return k22;} else if(ilara==3){return k23;} else if(ilara==4){return k24;} else if(ilara==5){return k25;}
+        } else if(zutabea==3){if(ilara==0){return k30;} else if(ilara==1){return k31;} else if(ilara==2){return k32;} else if(ilara==3){return k33;} else if(ilara==4){return k34;} else if(ilara==5){return k35;}
+        } else if(zutabea==4){if(ilara==0){return k40;} else if(ilara==1){return k41;} else if(ilara==2){return k42;} else if(ilara==3){return k43;} else if(ilara==4){return k44;} else if(ilara==5){return k45;}
+        } else if(zutabea==5){ if(ilara==0){return k50;} else if(ilara==1){return k51;} else if(ilara==2){return k52;} else if(ilara==3){return k53;} else if(ilara==4){return k54;} else if(ilara==5){return k55;}
+        } else if(zutabea==6){if(ilara==0){return k60;} else if(ilara==1){return k61;} else if(ilara==2){return k62;} else if(ilara==3){return k63;} else if(ilara==4){return k64;} else if(ilara==5){return k65;}
+        } else if(zutabea==7){ if(ilara==0){return k70;} else if(ilara==1){return k71;} else if(ilara==2){return k72;} else if(ilara==3){return k73;} else if(ilara==4){return k74;} else if(ilara==5){return k75;}
+        } else if(zutabea==8){ if(ilara==0){return k80;} else if(ilara==1){return k81;} else if(ilara==2){return k82;} else if(ilara==3){return k83;} else if(ilara==4){return k84;} else if(ilara==5){return k85;}
+        }
 
-    public void fitxaSartu(Circle kasilla, int zutabea, int ilara) {
+        return null;
+    }
+
+
+    public void fitxaSartu(int zutabea, int ilara) {
+        Circle kasilla= kasillaLortu(zutabea,ilara);
         tableroa[zutabea][ilara] = true;
         if (jokalaria == 1) {
             kasilla.setFill(Color.RED);
@@ -316,7 +332,6 @@ public class TableroaKud implements Initializable {
                 Timer timer = new Timer();
                 blokeatuta=true;
                 timer.schedule(new RemindTask(), 1000);
-                //ordenagailuarenTxanda();
             }
             if(actualButton!=null){
                 actualButton.setGraphic(flechaAzul);
@@ -351,28 +366,7 @@ public class TableroaKud implements Initializable {
     public void ordenagailuaZutabeBatHautatuAleatorioki(){ //Ordenagailu ERRAZA
         Random r = new Random();//0-8 artean zenbaki bat hartuko du. Zutabe bati egingo dio erreferentzia zenbakia. Beraz ateratako zenbakian sartuko du fitxa
         int zenbakia = r.nextInt(9);
-        if(zenbakia==0){
-            b0();
-        }else if(zenbakia==1){
-            b1();
-        }else if(zenbakia==2){
-            b2();
-        }else if(zenbakia==3){
-            b3();
-        }else if(zenbakia==4){
-            b4();
-        }else if(zenbakia==5){
-            b5();
-        }else if(zenbakia==6){
-            b6();
-        }else if(zenbakia==7){
-            b7();
-        }else if(zenbakia==8){
-            b8();
-        }else{
-            System.out.println("Erroreren bat egon da");
-        }
-
+        botoiFitxaSartu(zenbakia);
     }
 
 
@@ -396,29 +390,19 @@ public class TableroaKud implements Initializable {
     }
 
 
-
-
-
-    public void b0(ActionEvent actionEvent) { //se repite igual se puede sacar el codigo
-        if(!blokeatuta) {
-            b0();
-        }
-
-    }
-    public void b0(){
-        if (tableroa[0][5] == false) { //false --> EZ dago beteta
-            fitxaSartu(k05,0,5);
-
-        } else if (tableroa[0][4] == false) {
-            fitxaSartu(k04,0,4);
-        } else if (tableroa[0][3] == false) {
-            fitxaSartu(k03,0,3);
-        } else if (tableroa[0][2] == false) {
-            fitxaSartu(k02,0,2);
-        } else if (tableroa[0][1] == false) {
-            fitxaSartu(k01,0,1);
-        } else if (tableroa[0][0]  == false) {
-            fitxaSartu(k00,0,0);
+    public void botoiFitxaSartu(int zutabea){
+        if (!tableroa[zutabea][5]) { //false --> EZ dago beteta. ilara=5, behekoa da. Beraz lehenengo, behekoa beteta dagoen begiratuko du, beteta badago, goikora joango da...
+            fitxaSartu(zutabea,5);
+        } else if (!tableroa[zutabea][4]) {
+            fitxaSartu(zutabea,4);
+        } else if (!tableroa[zutabea][3]) {
+            fitxaSartu(zutabea,3);
+        } else if (!tableroa[zutabea][2]) {
+            fitxaSartu(zutabea,2);
+        } else if (!tableroa[zutabea][1]) {
+            fitxaSartu(zutabea,1);
+        } else if (!tableroa[zutabea][0]) {
+            fitxaSartu(zutabea,0);
         }else{
             //Beteta dago
             zutabeGuztiakBetetaKonprobatu(); //Konprobatu badaudela beteta ez dauden kasillak
@@ -434,274 +418,61 @@ public class TableroaKud implements Initializable {
         }
     }
 
+
+    public void b0(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(0); }
+
+    }
     public void b1(ActionEvent actionEvent) {
-        if(!blokeatuta) {
-            b1();
-        }
+        if(!blokeatuta) { botoiFitxaSartu(1); }
     }
-    public void b1(){
-        if (tableroa[1][5] == false) { //false --> EZ dago beteta
-            fitxaSartu(k15,1,5);
-        } else if (tableroa[1][4] == false) {
-            fitxaSartu(k14,1,4);
-        } else if (tableroa[1][3] == false) {
-            fitxaSartu(k13,1,3);
-        } else if (tableroa[1][2] == false) {
-            fitxaSartu(k12,1,2);
-        } else if (tableroa[1][1] == false) {
-            fitxaSartu(k11,1,1);
-        } else if (tableroa[1][0]  == false) {
-            fitxaSartu(k10,1,0);
-        }else{
-            zutabeGuztiakBetetaKonprobatu();
-            if (jokalaria == 2) {
-                if (jok2.equals("Ordenagailua")) {
-                    ordenagailuarenTxanda();
-                } else {
-                    System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-                }
-            }else {
-                System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-            }
-        }
-    }
+
     public void b2(ActionEvent actionEvent) {
-        if(!blokeatuta) {
-            b2();
-        }
+        if(!blokeatuta) { botoiFitxaSartu(2); }
     }
-    public void b2(){
-        if (tableroa[2][5] == false) { //false --> EZ dago beteta
-            fitxaSartu(k25,2,5);
-        } else if (tableroa[2][4] == false) {
-            fitxaSartu(k24,2,4);
-        } else if (tableroa[2][3] == false) {
-            fitxaSartu(k23,2,3);
-        } else if (tableroa[2][2] == false) {
-            fitxaSartu(k22,2,2);
-        } else if (tableroa[2][1] == false) {
-            fitxaSartu(k21,2,1);
-        } else if (tableroa[2][0]  == false) {
-            fitxaSartu(k20,2,0);
-        }else{
-            zutabeGuztiakBetetaKonprobatu();
-            if (jokalaria == 2) {
-                if (jok2.equals("Ordenagailua")) {
-                    ordenagailuarenTxanda();
-                } else {
-                    System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-                }
-            }else {
-                System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-            }
-        }
-    }
+
     public void b3(ActionEvent actionEvent) {
-        if(!blokeatuta) {
-            b3();
-        }
+        if(!blokeatuta) { botoiFitxaSartu(3); }
     }
-    public void b3(){
-        if (tableroa[3][5] == false) { //false --> EZ dago beteta
-            fitxaSartu(k35,3,5);
-        } else if (tableroa[3][4] == false) {
-            fitxaSartu(k34,3,4);
-        } else if (tableroa[3][3] == false) {
-            fitxaSartu(k33,3,3);
-        } else if (tableroa[3][2] == false) {
-            fitxaSartu(k32,3,2);
-        } else if (tableroa[3][1] == false) {
-            fitxaSartu(k31,3,1);
-        } else if (tableroa[3][0]  == false) {
-            fitxaSartu(k30,3,0);
-        }else{
-            zutabeGuztiakBetetaKonprobatu();
-            if (jokalaria == 2) {
-                if (jok2.equals("Ordenagailua")) {
-                    ordenagailuarenTxanda();
-                } else {
-                    System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-                }
-            }else {
-                System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-            }
-        }
-    }
+
     public void b4(ActionEvent actionEvent) {
-        if(!blokeatuta) {
-            b4();
-        }
+        if(!blokeatuta) { botoiFitxaSartu(4); }
     }
-    public void b4(){
-        if (tableroa[4][5] == false) { //false --> EZ dago beteta
-            fitxaSartu(k45,4,5);
-        } else if (tableroa[4][4] == false) {
-            fitxaSartu(k44,4,4);
-        } else if (tableroa[4][3] == false) {
-            fitxaSartu(k43,4,3);
-        } else if (tableroa[4][2] == false) {
-            fitxaSartu(k42,4,2);
-        } else if (tableroa[4][1] == false) {
-            fitxaSartu(k41,4,1);
-        } else if (tableroa[4][0]  == false) {
-            fitxaSartu(k40,4,0);
-        }else{
-            zutabeGuztiakBetetaKonprobatu();
-            if (jokalaria == 2) {
-                if (jok2.equals("Ordenagailua")) {
-                    ordenagailuarenTxanda();
-                } else {
-                    System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-                }
-            }else {
-                System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-            }
-        }
-    }
+
     public void b5(ActionEvent actionEvent) {
-        if(!blokeatuta) {
-            b5();
-        }
+        if(!blokeatuta) { botoiFitxaSartu(5); }
     }
-    public void b5(){
-        if (tableroa[5][5] == false) { //false --> EZ dago beteta
-            fitxaSartu(k55,5,5);
-        } else if (tableroa[5][4] == false) {
-            fitxaSartu(k54,5,4);
-        } else if (tableroa[5][3] == false) {
-            fitxaSartu(k53,5,3);
-        } else if (tableroa[5][2] == false) {
-            fitxaSartu(k52,5,2);
-        } else if (tableroa[5][1] == false) {
-            fitxaSartu(k51,5,1);
-        } else if (tableroa[5][0]  == false) {
-            fitxaSartu(k50,5,0);
-        }else{
-            zutabeGuztiakBetetaKonprobatu();
-            if (jokalaria == 2) {
-                if (jok2.equals("Ordenagailua")) {
-                    ordenagailuarenTxanda();
-                } else {
-                    System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-                }
-            }else {
-                System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-            }
-        }
-    }
+
     public void b6(ActionEvent actionEvent) {
-        if(!blokeatuta) {
-            b6();
-        }
-    }
-    public void b6(){
-        if (tableroa[6][5] == false) { //false --> EZ dago beteta
-            fitxaSartu(k65,6,5);
-        } else if (tableroa[6][4] == false) {
-            fitxaSartu(k64,6,4);
-        } else if (tableroa[6][3] == false) {
-            fitxaSartu(k63,6,3);
-        } else if (tableroa[6][2] == false) {
-            fitxaSartu(k62,6,2);
-        } else if (tableroa[6][1] == false) {
-            fitxaSartu(k61,6,1);
-        } else if (tableroa[6][0]  == false) {
-            fitxaSartu(k60,6,0);
-        }else{
-            zutabeGuztiakBetetaKonprobatu();
-            if (jokalaria == 2) {
-                if (jok2.equals("Ordenagailua")) {
-                    ordenagailuarenTxanda();
-                } else {
-                    System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-                }
-            }else {
-                System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-            }
-        }
+        if(!blokeatuta) { botoiFitxaSartu(6); }
     }
 
     public void b7(ActionEvent actionEvent) {
-        if(!blokeatuta) {
-            b7();
-        }
-    }
-    public void b7(){
-        if (tableroa[7][5] == false) { //false --> EZ dago beteta
-            fitxaSartu(k75,7,5);
-        } else if (tableroa[7][4] == false) {
-            fitxaSartu(k74,7,4);
-        } else if (tableroa[7][3] == false) {
-            fitxaSartu(k73,7,3);
-        } else if (tableroa[7][2] == false) {
-            fitxaSartu(k72,7,2);
-        } else if (tableroa[7][1] == false) {
-            fitxaSartu(k71,7,1);
-        } else if (tableroa[7][0]  == false) {
-            fitxaSartu(k70,7,0);
-        }else{
-            zutabeGuztiakBetetaKonprobatu();
-            if (jokalaria == 2) {
-                if (jok2.equals("Ordenagailua")) {
-                    ordenagailuarenTxanda();
-                } else {
-                    System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-                }
-            }else {
-                System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-            }
-        }
+        if(!blokeatuta) { botoiFitxaSartu(7); }
     }
 
     public void b8(ActionEvent actionEvent) {
-        if(!blokeatuta) {
-            b8();
-        }
+        if(!blokeatuta) { botoiFitxaSartu(8); }
     }
-    public void b8(){
-        if (tableroa[8][5] == false) { //false --> EZ dago beteta
-            fitxaSartu(k85,8,5);
-        } else if (tableroa[8][4] == false) {
-            fitxaSartu(k84,8,4);
-        } else if (tableroa[8][3] == false) {
-            fitxaSartu(k83,8,3);
-        } else if (tableroa[8][2] == false) {
-            fitxaSartu(k82,8,2);
-        } else if (tableroa[8][1] == false) {
-            fitxaSartu(k81,8,1);
-        } else if (tableroa[8][0]  == false) {
-            fitxaSartu(k80,8,0);
-        }else{
-            zutabeGuztiakBetetaKonprobatu();
-            if (jokalaria == 2) {
-                if (jok2.equals("Ordenagailua")) {
-                    ordenagailuarenTxanda();
-                } else {
-                    System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-                }
-            }else {
-                System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
-            }
-        }
-    }
+
 
 
 
 
     public void zutabeGuztiakBetetaKonprobatu(){
         if (tableroa[8][0] && tableroa[7][0] && tableroa[6][0] && tableroa[5][0] && tableroa[4][0] && tableroa[3][0] && tableroa[2][0] && tableroa[1][0] && tableroa[0][0]) {
-            //Guztiak beteta daude - beraz jokoa amaitu da eta ez du inork irabazi
-            jokoaAmaituDa();
+            jokoaAmaituDa(); //Guztiak beteta daude - beraz jokoa amaitu da eta ez du inork irabazi
         }
     }
 
 
     public void jokoaAmaituDa(){
+        mainApp.pantailaHanditu();
         System.out.println("Jokoa amaitu da. Ez du inork irabazi");
-        //AQUI HABRIA QUE ABRIR ALGUN MENSAJE DE SE HA ACABADO EL JUEGO Y PARAR TODO. Así no sigue
-        //ABRIR LA PANTALLA DE ANIMACION;
+        //Animazioa ireki
         triste.setVisible(true);
         irabaziLabel.setText("EZ DU INORK \n IRABAZI");
+        berrizB.setVisible(true);
     }
 
 
@@ -709,11 +480,7 @@ public class TableroaKud implements Initializable {
 
 
     public void konprobatu4EnRayaDagoen( int zutabea, int ilara, String kolore){
-        //IGUAL CUANDO SALE Q IRABAZI PUES SALIR DIRECTAMENTE SIN QUE COMPRUEBE NADA MAS
-        //GORRIA
         boolean[][] m = null;
-        boolean irabazi=false;
-
 
         if(kolore=="gorri"){
             m=gorri;
@@ -727,7 +494,7 @@ public class TableroaKud implements Initializable {
 
         //HORIZONTALAK
         int outNon=0;
-        if((zutabea-1)>=0){ //ez da jarri behar ==true. ez bada ezer jartzen hori esan nahi duelako
+        if((zutabea-1)>=0){
             if(m[zutabea-1][ilara]){
                 if((zutabea-2)>=0){
                     if(m[zutabea-2][ilara]){
@@ -786,7 +553,7 @@ public class TableroaKud implements Initializable {
 
         //BERTIKALAK
         outNon=0;
-        if((ilara-1)>=0){ //ez da jarri behar ==true. ez bada ezer jartzen hori esan nahi duelako
+        if((ilara-1)>=0){
             if(m[zutabea][ilara-1]){
                 if((ilara-2)>=0){
                     if(m[zutabea][ilara-2]){
@@ -844,7 +611,7 @@ public class TableroaKud implements Initializable {
 
         //DIAGONAL NAGUSI
         outNon=0;
-        if((zutabea-1)>=0&&(ilara+1)<=5){ //ez da jarri behar ==true. ez bada ezer jartzen hori esan nahi duelako
+        if((zutabea-1)>=0&&(ilara+1)<=5){
             if(m[zutabea-1][ilara+1]){
                 if((zutabea-2)>=0&&(ilara+2)<=5){
                     if(m[zutabea-2][ilara+2]){
@@ -901,7 +668,7 @@ public class TableroaKud implements Initializable {
 
         //DIAGONAL BESTEA
         outNon=0;
-        if((ilara-1)>=0&&(zutabea-1)>=0){ //ez da jarri behar ==true. ez bada ezer jartzen hori esan nahi duelako
+        if((ilara-1)>=0&&(zutabea-1)>=0){
             if(m[zutabea-1][ilara-1]){
                 if((ilara-2)>=0&&(zutabea-2)>=0){
                     if(m[zutabea-2][ilara-2]){
