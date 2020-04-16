@@ -29,7 +29,7 @@ public class Main extends Application {
     stage = primaryStage;
     pantailakKargatu();
 
-    stage.setTitle("4ncane");
+    stage.setTitle("4cane");
     tableroaKud.hasieratu("Jokalari 1","Jokalari 2","BiJok");
 
     stage.setScene(new Scene(tableroa));

@@ -314,7 +314,6 @@ public class TableroaKud implements Initializable {
                 Timer timer = new Timer();
                 blokeatuta=true;
                 timer.schedule(new RemindTask(), 1000);
-
                 //ordenagailuarenTxanda();
             }
             if(actualButton!=null){
@@ -333,14 +332,13 @@ public class TableroaKud implements Initializable {
     }
 
     public void ordenagailuarenTxanda() {
-        //DelayUtil d = new DelayUtil();
-        //d.delay(1000);
-
         if(nondik.equals("JOErraza")){
             ordenagailuaZutabeBatHautatuAleatorioki(); //Ordenagailu erraza
 
         }else if(nondik.equals("JOZaila")){
-            //ZAILA
+            //Ordenagailu ZAILA
+            ordenagailuaZutabeaHautatuInteligentziaArtifizialaErabiliz();
+
         }else{
             System.out.println("Erroreren bat egon da");
         }
@@ -349,7 +347,6 @@ public class TableroaKud implements Initializable {
 
 
     public void ordenagailuaZutabeBatHautatuAleatorioki(){ //Ordenagailu ERRAZA
-
         Random r = new Random();//0-8 artean zenbaki bat hartuko du. Zutabe bati egingo dio erreferentzia zenbakia. Beraz ateratako zenbakian sartuko du fitxa
         int zenbakia = r.nextInt(9);
         if(zenbakia==0){
@@ -373,6 +370,26 @@ public class TableroaKud implements Initializable {
         }else{
             System.out.println("Erroreren bat egon da");
         }
+
+    }
+
+
+    public void ordenagailuaZutabeaHautatuInteligentziaArtifizialaErabiliz() {
+
+
+
+
+        //Lo de IA. elegir en que zutabe tiene que meter la ficha
+
+
+
+
+
+
+
+
+
+
 
     }
 
