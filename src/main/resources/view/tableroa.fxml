@@ -44,39 +44,39 @@
             <RowConstraints maxHeight="191.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="b0" mnemonicParsing="false" onAction="#b8" onKeyPressed="#zeroKeyExited" onKeyReleased="#zeroKeyEntered" onMouseEntered="#zeroEntered" onMouseExited="#zeroExited" prefHeight="40.0" prefWidth="63.0" GridPane.columnIndex="8">
+            <Button fx:id="b08" mnemonicParsing="false" onAction="#b8" onKeyPressed="#zortziKeyExited" onKeyReleased="#zortziKeyEntered" onMouseEntered="#zortziEntered" onMouseExited="#zortziExited" prefHeight="40.0" prefWidth="63.0" GridPane.columnIndex="8">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
-            <Button fx:id="b01" mnemonicParsing="false" onAction="#b1" onKeyPressed="#zazpiKeyExited" onKeyReleased="#zazpiKeyEntered" onMouseEntered="#zazpiEntered" onMouseExited="#zazpiExited" prefHeight="125.0" prefWidth="62.0" GridPane.columnIndex="1">
+            <Button fx:id="b07" mnemonicParsing="false" onAction="#b7" onKeyPressed="#zazpiKeyExited" onKeyReleased="#zazpiKeyEntered" onMouseEntered="#zazpiEntered" onMouseExited="#zazpiExited" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="7">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
-            <Button fx:id="b02" mnemonicParsing="false" onAction="#b7" onKeyPressed="#batKeyExited" onKeyReleased="#batKeyEntered" onMouseEntered="#batEntered" onMouseExited="#batExited" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="7">
+            <Button fx:id="b06" mnemonicParsing="false" onAction="#b6" onKeyPressed="#seiKeyExited" onKeyReleased="#seiKeyEntered" onMouseEntered="#seiEntered" onMouseExited="#seiExited" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="6">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
-            <Button fx:id="b03" mnemonicParsing="false" onAction="#b6" onKeyPressed="#biKeyExited" onKeyReleased="#biKeyEntered" onMouseEntered="#biEntered" onMouseExited="#biExited" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="6">
+            <Button fx:id="b05" mnemonicParsing="false" onAction="#b5" onKeyPressed="#bostKeyExited" onKeyReleased="#bostKeyEntered" onMouseEntered="#bostEntered" onMouseExited="#bostExited" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="5">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
-            <Button fx:id="b04" mnemonicParsing="false" onAction="#b5" onKeyPressed="#hiruKeyExited" onKeyReleased="#hiruKeyEntered" onMouseEntered="#hiruEntered" onMouseExited="#hiruExited" prefHeight="44.0" prefWidth="63.0" GridPane.columnIndex="5">
+            <Button fx:id="b04" mnemonicParsing="false" onAction="#b4" onKeyPressed="#lauKeyExited" onKeyReleased="#lauKeyEntered" onMouseEntered="#lauEntered" onMouseExited="#lauExited" prefHeight="42.0" prefWidth="62.0" GridPane.columnIndex="4">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
-            <Button fx:id="b05" mnemonicParsing="false" onAction="#b4" onKeyPressed="#lauKeyExited" onKeyReleased="#lauKeyEntered" onMouseEntered="#lauEntered" onMouseExited="#lauExited" prefHeight="42.0" prefWidth="62.0" GridPane.columnIndex="4">
+            <Button fx:id="b03" mnemonicParsing="false" onAction="#b3" onKeyPressed="#hiruKeyExited" onKeyReleased="#hiruKeyEntered" onMouseEntered="#hiruEntered" onMouseExited="#hiruExited" prefHeight="42.0" prefWidth="62.0" GridPane.columnIndex="3">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
-            <Button fx:id="b06" mnemonicParsing="false" onAction="#b3" onKeyPressed="#bostKeyExited" onKeyReleased="#bostKeyEntered" onMouseEntered="#bostEntered" onMouseExited="#bostExited" prefHeight="42.0" prefWidth="62.0" GridPane.columnIndex="3">
+            <Button fx:id="b02" mnemonicParsing="false" onAction="#b2" onKeyPressed="#biKeyExited" onKeyReleased="#biKeyEntered" onMouseEntered="#biEntered" onMouseExited="#biExited" prefHeight="43.0" prefWidth="62.0" GridPane.columnIndex="2">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
-            <Button fx:id="b07" mnemonicParsing="false" onAction="#b2" onKeyPressed="#seiKeyExited" onKeyReleased="#seiKeyEntered" onMouseEntered="#seiEntered" onMouseExited="#seiExited" prefHeight="43.0" prefWidth="62.0" GridPane.columnIndex="2">
+            <Button fx:id="b01" mnemonicParsing="false" onAction="#b1" onKeyPressed="#batKeyExited" onKeyReleased="#batKeyEntered" onMouseEntered="#batEntered" onMouseExited="#batExited" prefHeight="125.0" prefWidth="62.0" GridPane.columnIndex="1">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
-            <Button fx:id="b08" mnemonicParsing="false" onAction="#b0" onKeyPressed="#zortziKeyExited" onKeyReleased="#zortziKeyEntered" onMouseEntered="#zortziEntered" onMouseExited="#zortziExited" prefHeight="105.0" prefWidth="62.0">
+            <Button fx:id="b0" mnemonicParsing="false" onAction="#b0" onKeyPressed="#zeroKeyExited" onKeyReleased="#zeroKeyEntered" onMouseEntered="#zeroEntered" onMouseExited="#zeroExited" prefHeight="105.0" prefWidth="62.0">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>

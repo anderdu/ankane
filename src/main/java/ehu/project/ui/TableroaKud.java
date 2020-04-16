@@ -30,26 +30,15 @@ import java.util.*;
 
 public class TableroaKud implements Initializable {
 
-    public RadioMenuItem menuBiJok;
-    public RadioMenuItem menuJOErraza;
-    public RadioMenuItem menuJOZaila;
+    public RadioMenuItem menuBiJok,menuJOErraza,menuJOZaila;
     public ToggleGroup toggleGroup;
-    public ImageView flechaAzul;
-    public ImageView flechaRoja;
-    public ImageView suziri1;
-    public ImageView suziri2;
-    public ImageView suziri3;
-    public ImageView suziri4;
-    public ImageView suziri5;
-    public ImageView suziri6;
-    public ImageView triste;
+    public ImageView flechaAzul,flechaRoja;
+    public ImageView suziri1,suziri2,suziri3,suziri4,suziri5,suziri6,triste;
     public Label irabaziLabel;
 
     //ranking-a
-    public Button berrizB;
-    public Button rankingB;
-    public Label labelRanking;
-    public Label labelIzena;
+    public Button berrizB,rankingB;
+    public Label labelRanking,labelIzena;
     public TextField IzenaSartu;
     public Button OK;
     //taula
@@ -58,28 +47,9 @@ public class TableroaKud implements Initializable {
     public TableColumn<Taula,String> tIzen;
     public TableColumn<Taula,Time> tDenb;
 
-
-    private Main mainApp;
-
-    private int jokalaria;
-
-    private static boolean[][] tableroa;
-    private static boolean[][] gorri;
-    private static boolean[][] urdin;
-
     //botoiak
-    public Button b0;
-    public Button b01;
-    public Button b02;
-    public Button b03;
-    public Button b04;
-    public Button b05;
-    public Button b06;
-    public Button b07;
-    public Button b08;
-
+    public Button b0,b01,b02,b03,b04,b05,b06,b07,b08;
     public Button actualButton=null;
-
 
     //cronometrorako
     @FXML
@@ -87,135 +57,18 @@ public class TableroaKud implements Initializable {
     public Label denboraLabel;
     private boolean stop=false;
 
-    @FXML
-    private Circle k00; //columna,linea
-    @FXML
-    private Circle k01;
-    @FXML
-    private Circle k02;
-    @FXML
-    private Circle k03;
-    @FXML
-    private Circle k04;
-    @FXML
-    private Circle k05;
+    //Zirkuluak: k + columna + linea
+    @FXML private Circle k00,k01,k02,k03,k04,k05,k10,k11,k12,k13,k14,k15,k20,k21,k22,k23,k24,k25,k30,k31,k32,k33,k34,k35,k40,k41,k42,k43,k44,k45,k50,k51,k52,k53,k54,k55,k60,k61,k62,k63,k64,k65,k70,k71,k72,k73,k74,k75,k80,k81,k82,k83,k84,k85;
 
-    @FXML
-    private Circle k10; //columna,linea
-    @FXML
-    private Circle k11;
-    @FXML
-    private Circle k12;
-    @FXML
-    private Circle k13;
-    @FXML
-    private Circle k14;
-    @FXML
-    private Circle k15;
+    @FXML private Label title,jokalariTxanda;
 
-    @FXML
-    private Circle k20; //columna,linea
-    @FXML
-    private Circle k21;
-    @FXML
-    private Circle k22;
-    @FXML
-    private Circle k23;
-    @FXML
-    private Circle k24;
-    @FXML
-    private Circle k25;
-
-    @FXML
-    private Circle k30; //columna,linea
-    @FXML
-    private Circle k31;
-    @FXML
-    private Circle k32;
-    @FXML
-    private Circle k33;
-    @FXML
-    private Circle k34;
-    @FXML
-    private Circle k35;
-
-    @FXML
-    private Circle k40; //columna,linea
-    @FXML
-    private Circle k41;
-    @FXML
-    private Circle k42;
-    @FXML
-    private Circle k43;
-    @FXML
-    private Circle k44;
-    @FXML
-    private Circle k45;
-
-    @FXML
-    private Circle k50; //columna,linea
-    @FXML
-    private Circle k51;
-    @FXML
-    private Circle k52;
-    @FXML
-    private Circle k53;
-    @FXML
-    private Circle k54;
-    @FXML
-    private Circle k55;
-
-    @FXML
-    private Circle k60; //columna,linea
-    @FXML
-    private Circle k61;
-    @FXML
-    private Circle k62;
-    @FXML
-    private Circle k63;
-    @FXML
-    private Circle k64;
-    @FXML
-    private Circle k65;
-
-    @FXML
-    private Circle k70; //columna,linea
-    @FXML
-    private Circle k71;
-    @FXML
-    private Circle k72;
-    @FXML
-    private Circle k73;
-    @FXML
-    private Circle k74;
-    @FXML
-    private Circle k75;
-
-    @FXML
-    private Circle k80; //columna,linea
-    @FXML
-    private Circle k81;
-    @FXML
-    private Circle k82;
-    @FXML
-    private Circle k83;
-    @FXML
-    private Circle k84;
-    @FXML
-    private Circle k85;
-
-
-    @FXML
-    private Label title;
-
-    @FXML
-    private Label jokalariTxanda;
-
-    private String jok1;
-    private String jok2;
-    private String nondik;
+    private static boolean[][] tableroa,gorri,urdin;
+    private int jokalaria;
+    private String jok1,jok2,nondik;
     private boolean blokeatuta;
     private ImageView w=new ImageView();
+
+    private Main mainApp;
 
     private static TableroaKud instantzia = new TableroaKud();
 
@@ -230,16 +83,7 @@ public class TableroaKud implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        suziri1.setVisible(false);
-        suziri2.setVisible(false);
-        suziri3.setVisible(false);
-        suziri4.setVisible(false);
-        suziri5.setVisible(false);
-        suziri6.setVisible(false);
-        triste.setVisible(false);
-        irabaziLabel.setTextFill(Color.YELLOW); //no se por que no hace
-        irabaziLabel.setVisible(false);
-        berrizB.setVisible(false);
+
     }
 
 
@@ -248,58 +92,44 @@ public class TableroaKud implements Initializable {
         stop=false;
         this.nondik=n;
         jokalaria = 1;
+        jok1 = j1;
         if(nondik.equals("BiJok")){ //2 jokalariak ezarri eta txanda ezarri
             toggleGroup.selectToggle(menuBiJok);
-            jok1 = j1;
             jok2 = j2;
             jokalariTxanda.setText(j1);
             title.setText("2 Jokalari");
             denboraLabel.setVisible(false);
             timerLabel.setVisible(false);
-        }else if(nondik.equals("JOErraza")){ //jokalari soila. Beste jokalaria ordenagailua da
-            toggleGroup.selectToggle(menuJOErraza);
-            jok1 = j1;
-            jok2 = "Ordenagailua";
+        }else {  //1 vs ordenagailua
+            jok2 = "Ordenagailua";  //2jokalaria ordenagailua izango da
             jokalariTxanda.setText(j1);
-            title.setText("1 Jokalari VS Ordenagailu - Erraza");
-            denboraLabel.setVisible(true);
+            denboraLabel.setVisible(true);  //kronometroa jarriko da
             timerLabel.setVisible(true);
             start();
-        }else if(nondik.equals("JOZaila")){
-            toggleGroup.selectToggle(menuJOZaila);
-            jok1 = j1;
-            jok2 = "Ordenagailua";
-            jokalariTxanda.setText(j1);
-            title.setText("1 Jokalari VS Ordenagailu - Zaila");
-            denboraLabel.setVisible(true);
-            timerLabel.setVisible(true);
-            start();
-        }else{
-            System.out.println("Erroreren bat egon da");
+            if(nondik.equals("JOErraza")){ //jokalari soila. Beste jokalaria ordenagailua da
+                toggleGroup.selectToggle(menuJOErraza);
+                title.setText("1 Jokalari VS Ordenagailu - Erraza");
+            }else if(nondik.equals("JOZaila")){
+                toggleGroup.selectToggle(menuJOZaila);
+                title.setText("1 Jokalari VS Ordenagailu - Zaila");
+            }
         }
 
         //Kasilla guztiak zuriak jarri. Berrabiarazten bada jokoa edo
         k00.setFill(Color.WHITE); k01.setFill(Color.WHITE); k02.setFill(Color.WHITE); k03.setFill(Color.WHITE); k04.setFill(Color.WHITE); k05.setFill(Color.WHITE);k10.setFill(Color.WHITE);k11.setFill(Color.WHITE);k12.setFill(Color.WHITE); k13.setFill(Color.WHITE);k14.setFill(Color.WHITE); k15.setFill(Color.WHITE); k20.setFill(Color.WHITE);  k21.setFill(Color.WHITE);k22.setFill(Color.WHITE); k23.setFill(Color.WHITE); k24.setFill(Color.WHITE);k25.setFill(Color.WHITE);k30.setFill(Color.WHITE); k31.setFill(Color.WHITE); k32.setFill(Color.WHITE);k33.setFill(Color.WHITE);k34.setFill(Color.WHITE); k35.setFill(Color.WHITE);k40.setFill(Color.WHITE); k41.setFill(Color.WHITE);k42.setFill(Color.WHITE);k43.setFill(Color.WHITE); k44.setFill(Color.WHITE);k45.setFill(Color.WHITE);k50.setFill(Color.WHITE); k51.setFill(Color.WHITE);k52.setFill(Color.WHITE);k53.setFill(Color.WHITE); k54.setFill(Color.WHITE);k55.setFill(Color.WHITE);k60.setFill(Color.WHITE); k61.setFill(Color.WHITE);k62.setFill(Color.WHITE);k63.setFill(Color.WHITE);k64.setFill(Color.WHITE);k65.setFill(Color.WHITE);k70.setFill(Color.WHITE);k71.setFill(Color.WHITE);k72.setFill(Color.WHITE);k73.setFill(Color.WHITE);k74.setFill(Color.WHITE);k75.setFill(Color.WHITE);k80.setFill(Color.WHITE); k81.setFill(Color.WHITE);k82.setFill(Color.WHITE);k83.setFill(Color.WHITE);k84.setFill(Color.WHITE);k85.setFill(Color.WHITE);
-        //metodo de get izena del primero y del segundo
-        tableroa = new boolean[9][6];
-        gorri = new boolean[9][6];
-        urdin = new boolean[9][6];
-        for (int i=0;i<tableroa.length;i++){
-            for (int j=0;j<tableroa[i].length;j++){
-                tableroa[i][j] = false;
-            }
-        }
 
-        //ranking-eko gauzak
-        berrizB.setVisible(false);
-        rankingB.setVisible(false);
-        taula.setVisible(false);
-        labelRanking.setVisible(false);
-        labelIzena.setVisible(false);
-        IzenaSartu.setVisible(false);
-        OK.setVisible(false);
+        //tableroak hasieratu
+        tableroa = new boolean[9][6]; gorri = new boolean[9][6]; urdin = new boolean[9][6];
 
+        //ranking-eko gauzak false-era hasieratu
+        berrizB.setVisible(false); rankingB.setVisible(false); taula.setVisible(false); labelRanking.setVisible(false); labelIzena.setVisible(false); IzenaSartu.setVisible(false); OK.setVisible(false);
+
+        //Animazioa guztiak false-ra hasieratu
+        suziri1.setVisible(false); suziri2.setVisible(false); suziri3.setVisible(false); suziri4.setVisible(false); suziri5.setVisible(false); suziri6.setVisible(false); triste.setVisible(false); irabaziLabel.setVisible(false); berrizB.setVisible(false);
+
+        //hasieran ez dago blokeatuta
         blokeatuta=false;
+
     }
 
     public Circle kasillaLortu(int zutabea, int ilara){
@@ -312,9 +142,7 @@ public class TableroaKud implements Initializable {
         } else if(zutabea==6){if(ilara==0){return k60;} else if(ilara==1){return k61;} else if(ilara==2){return k62;} else if(ilara==3){return k63;} else if(ilara==4){return k64;} else if(ilara==5){return k65;}
         } else if(zutabea==7){ if(ilara==0){return k70;} else if(ilara==1){return k71;} else if(ilara==2){return k72;} else if(ilara==3){return k73;} else if(ilara==4){return k74;} else if(ilara==5){return k75;}
         } else if(zutabea==8){ if(ilara==0){return k80;} else if(ilara==1){return k81;} else if(ilara==2){return k82;} else if(ilara==3){return k83;} else if(ilara==4){return k84;} else if(ilara==5){return k85;}
-        }
-
-        return null;
+        }return null;
     }
 
 
@@ -325,10 +153,10 @@ public class TableroaKud implements Initializable {
             kasilla.setFill(Color.RED);
             gorri[zutabea][ilara] = true;
             konprobatu4EnRayaDagoen(zutabea,ilara,"gorri");
-            jokalaria++;
+            jokalaria++;//txanda aldatu
             jokalariTxanda.setText(jok2);
 
-            if(jokalariTxanda.getText().equals("Ordenagailua")){
+            if(jokalariTxanda.getText().equals("Ordenagailua")){ //Orain ordenagailuaren txanda bada, berak egingo du
                 Timer timer = new Timer();
                 blokeatuta=true;
                 timer.schedule(new RemindTask(), 1000);
@@ -349,11 +177,10 @@ public class TableroaKud implements Initializable {
     }
 
     public void ordenagailuarenTxanda() {
-        if(nondik.equals("JOErraza")){
-            ordenagailuaZutabeBatHautatuAleatorioki(); //Ordenagailu erraza
+        if(nondik.equals("JOErraza")){ //Ordenagailu erraza
+            ordenagailuaZutabeBatHautatuAleatorioki();
 
-        }else if(nondik.equals("JOZaila")){
-            //Ordenagailu ZAILA
+        }else if(nondik.equals("JOZaila")){ //Ordenagailu ZAILA
             ordenagailuaZutabeaHautatuInteligentziaArtifizialaErabiliz();
 
         }else{
@@ -390,6 +217,36 @@ public class TableroaKud implements Initializable {
     }
 
 
+
+
+    //ZUTABE BAKOITZEAN FITXA SARTZEKO BOTOIAN CLICK
+    public void b0(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(0); }
+    }
+    public void b1(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(1); }
+    }
+    public void b2(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(2); }
+    }
+    public void b3(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(3); }
+    }
+    public void b4(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(4); }
+    }
+    public void b5(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(5); }
+    }
+    public void b6(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(6); }
+    }
+    public void b7(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(7); }
+    }
+    public void b8(ActionEvent actionEvent) {
+        if(!blokeatuta) { botoiFitxaSartu(8); }
+    }
     public void botoiFitxaSartu(int zutabea){
         if (!tableroa[zutabea][5]) { //false --> EZ dago beteta. ilara=5, behekoa da. Beraz lehenengo, behekoa beteta dagoen begiratuko du, beteta badago, goikora joango da...
             fitxaSartu(zutabea,5);
@@ -419,44 +276,6 @@ public class TableroaKud implements Initializable {
     }
 
 
-    public void b0(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(0); }
-
-    }
-    public void b1(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(1); }
-    }
-
-    public void b2(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(2); }
-    }
-
-    public void b3(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(3); }
-    }
-
-    public void b4(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(4); }
-    }
-
-    public void b5(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(5); }
-    }
-
-    public void b6(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(6); }
-    }
-
-    public void b7(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(7); }
-    }
-
-    public void b8(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(8); }
-    }
-
-
-
 
 
     public void zutabeGuztiakBetetaKonprobatu(){
@@ -464,7 +283,6 @@ public class TableroaKud implements Initializable {
             jokoaAmaituDa(); //Guztiak beteta daude - beraz jokoa amaitu da eta ez du inork irabazi
         }
     }
-
 
     public void jokoaAmaituDa(){
         mainApp.pantailaHanditu();
@@ -474,8 +292,6 @@ public class TableroaKud implements Initializable {
         irabaziLabel.setText("EZ DU INORK \n IRABAZI");
         berrizB.setVisible(true);
     }
-
-
 
 
 
@@ -502,24 +318,12 @@ public class TableroaKud implements Initializable {
                             if(m[zutabea-3][ilara]){
                                 this.irabazi();
                                 stop=true;
-                            }else{
-                                outNon=3;
-                            }
-                        }else{
-                            outNon=3;
-                        }
-                    }else{
-                        outNon=2;
-                    }
-                }else{
-                    outNon=2;
-                }
-            }else{
-                outNon=1;
-            }
-        }else{
-            outNon=1;
-        }
+                            }else{ outNon=3; }
+                        }else{ outNon=3; }
+                    }else{ outNon=2; }
+                }else{ outNon=2; }
+            }else{ outNon=1; }
+        }else{ outNon=1; }
         if(outNon==1){
             if((zutabea+3)<=8){ //8 baino gehio bada, matrizearen mugetatik pasako da. Gainera betetzeko 3 balioak egon beharko dira
                 if(m[zutabea+1][ilara]){
@@ -561,24 +365,13 @@ public class TableroaKud implements Initializable {
                             if(m[zutabea][ilara-3]){
                                 this.irabazi();
                                 stop=true;
-                            }else{
-                                outNon=3;
-                            }
-                        }else{
-                            outNon=3;
-                        }
-                    }else{
-                        outNon=2;
-                    }
-                }else{
-                    outNon=2;
-                }
-            }else{
-                outNon=1;
-            }
-        }else{
-            outNon=1;
-        }
+                            }else{ outNon=3; }
+                        }else{ outNon=3; }
+                    }else{ outNon=2; }
+                }else{ outNon=2; }
+            }else{ outNon=1; }
+        }else{ outNon=1; }
+
         if(outNon==1){
             if((ilara+3)<=5){ //8 baino gehio bada, matrizearen mugetatik pasako da. Gainera betetzeko 3 balioak egon beharko dira
                 if(m[zutabea][ilara+1]){
@@ -619,24 +412,13 @@ public class TableroaKud implements Initializable {
                             if(m[zutabea-3][ilara+3]){
                                 this.irabazi();
                                 stop=true;
-                            }else{
-                                outNon=3;
-                            }
-                        }else{
-                            outNon=3;
-                        }
-                    }else{
-                        outNon=2;
-                    }
-                }else{
-                    outNon=2;
-                }
-            }else{
-                outNon=1;
-            }
-        }else{
-            outNon=1;
-        }
+                            }else{ outNon=3; }
+                        }else{ outNon=3; }
+                    }else{ outNon=2; }
+                }else{ outNon=2; }
+            }else{ outNon=1; }
+        }else{ outNon=1; }
+
         if(outNon==1){
             if((zutabea+3)<=8&&(ilara-3)>=0){ //6 baino gehio bada, matrizearen mugetatik pasako da. Gainera betetzeko 3 balioak egon beharko dira
                 if(m[zutabea+1][ilara-1]){
@@ -676,24 +458,13 @@ public class TableroaKud implements Initializable {
                             if(m[zutabea-3][ilara-3]){
                                 this.irabazi();
                                 stop=true;
-                            }else{
-                                outNon=3;
-                            }
-                        }else{
-                            outNon=3;
-                        }
-                    }else{
-                        outNon=2;
-                    }
-                }else{
-                    outNon=2;
-                }
-            }else{
-                outNon=1;
-            }
-        }else{
-            outNon=1;
-        }
+                            }else{ outNon=3; }
+                        }else{ outNon=3; }
+                    }else{ outNon=2; }
+                }else{ outNon=2; }
+            }else{ outNon=1; }
+        }else{ outNon=1; }
+
         if(outNon==1){
             if((ilara+3)<=5&&(zutabea+3)<=8){ //8 baino gehio bada, matrizearen mugetatik pasako da. Gainera betetzeko 3 balioak egon beharko dira
                 if(m[zutabea+1][ilara+1]){
@@ -741,7 +512,6 @@ public class TableroaKud implements Initializable {
             irabaziLabel.setVisible(true);
             if(!nondik.equals("BiJok")){
                 irabaziLabel.setText("ZORIONAK!! \n"+jokalariTxanda.getText());
-
             }else{
                 irabaziLabel.setText("ZORIONAK!! \n"+jokalariTxanda.getText());
             }
@@ -763,8 +533,7 @@ public class TableroaKud implements Initializable {
         }else{
             System.out.println("Joko modu horretan zaude jada");
         }
-        //podemos poner que si ya esta salte una pantalla de ya estas en ese modo seguro q quieres reiniarlo?. o no reiniciarlo
-    }
+   }
 
     public void clickMenuJOErraza(ActionEvent actionEvent) {
         if(!nondik.equals("JOErraza")) {
@@ -794,8 +563,6 @@ public class TableroaKud implements Initializable {
             System.out.println("Erroreren bat egon da");
         }
     }
-
-
 
 
 
@@ -845,35 +612,20 @@ public class TableroaKud implements Initializable {
     }
 
 
-
-
-
-
     public void berrizClick(ActionEvent actionEvent) {
         this.clickBerrabiarazi(actionEvent);
-        suziri1.setVisible(false);
-        suziri2.setVisible(false);
-        suziri3.setVisible(false);
-        suziri4.setVisible(false);
-        suziri5.setVisible(false);
-        suziri6.setVisible(false);
-        triste.setVisible(false);
-        irabaziLabel.setVisible(false);
-        berrizB.setVisible(false);
-        stop=false;
-
     }
 
     public void rankingClick(ActionEvent actionEvent) {
+        //Ranking-a gorde nahi badu, izena eskatuko dio:
         labelIzena.setVisible(true);
         IzenaSartu.setVisible(true);
         OK.setVisible(true);
-
     }
 
     public void okClick(ActionEvent actionEvent) {
-        //izena sartu du jada
-        if(!IzenaSartu.getText().equals("")){  //izen bat sartu badu
+        //izena sartu du jada. konprobatu hutsa ez dela
+        if(!IzenaSartu.getText().equals("")){  //izen bat sartu badu, izena sartzeko kutxak desgaituko ditugu, eta ranking-a erakusteko kutxak gaitu
             labelIzena.setVisible(false);
             IzenaSartu.setVisible(false);
             OK.setVisible(false);
@@ -881,269 +633,95 @@ public class TableroaKud implements Initializable {
             labelRanking.setVisible(true);
 
             ObservableList<Taula>  taulaDatuak= DBKud.getInstantzia().rankingErakutsi(IzenaSartu.getText(),timerLabel.getText(),nondik);
-
             //taula bete
-
             tRank.setCellValueFactory(new PropertyValueFactory<>("pos"));
             tIzen.setCellValueFactory(new PropertyValueFactory<>("izena"));
             tDenb.setCellValueFactory(new PropertyValueFactory<>("denbora"));
             taula.setItems(taulaDatuak);
 
-
-        }else{
+        }else{//ez badu izenik sartu berriz sartzeko eskatuko du
             labelIzena.setText("Izena berriz sartu:");
         }
     }
 
 
 
+    //BOTOIAREN GAINEAN ZAUDELA ADIERAZI. MOUSE NAIZ KEYBOARD
+    //.button:hover{-fx-graphic: url("flecha.png" );}  - Baina ezin dira desberdindu gezi urdinak eta gorriak. beraz oraingoz ez dugu erabiliko
 
+    public Button botoiaLortu(int botoiId){
+        if(botoiId==0){ return b0;}
+        else if(botoiId==1){ return b01;}
+        else if(botoiId==2){ return b02;}
+        else if(botoiId==3){ return b03;}
+        else if(botoiId==4){ return b04;}
+        else if(botoiId==5){ return b05;}
+        else if(botoiId==6){ return b06;}
+        else if(botoiId==7){ return b07;}
+        else if(botoiId==8){ return b08;}
+        return null;
+    }
 
-
-
-//BOTOIAREN GEINEAN ZAUDELA ADIERAZI. MOUSE NAIZ KEYBOARD
-
-    //gezien koloreak botoian
-    //todos igual en el css. Pero en el css no puedes diferenciar los colores y aqui si
-    //.button:hover{
-    //    -fx-graphic: url("flecha.png" );
-    //}
-
-    //Zero botoiaren gainean zaudela adierazi
-    public void zeroEntered(){
+    public void Entered(int botoiId){
+        Button botoia = botoiaLortu(botoiId);
         if (jokalaria == 1) {
-            b0.setGraphic(flechaRoja);
+            botoia.setGraphic(flechaRoja);
         }else{
-            b0.setGraphic(flechaAzul);
+            botoia.setGraphic(flechaAzul);
         }
-        actualButton=b0;
+        actualButton=botoia;
     }
-    public void zeroExited() {
-        b0.setGraphic(w);
+
+    public void Exited(int botoiId){
+        Button botoia = botoiaLortu(botoiId);
+        botoia.setGraphic(w);
         actualButton=null;
-
     }
-    public void zeroEntered(MouseEvent mouseEvent) {
-        zeroEntered();
-    }
-    public void zeroExited(MouseEvent mouseEvent) {
-        zeroExited();
-    }
-    public void zeroKeyEntered(KeyEvent keyEvent) {
-        zeroEntered();
-    }
-    public void zeroKeyExited(KeyEvent keyEvent) {
-        zeroExited();
-    }
-
+    //zero
+    public void zeroEntered(MouseEvent mouseEvent) { Entered(0); }  //Saguarekin sartu
+    public void zeroExited(MouseEvent mouseEvent) { Exited(0); }    //Saguarekin atera
+    public void zeroKeyEntered(KeyEvent keyEvent) { Entered(0); }   //Teklatuarekin sartu
+    public void zeroKeyExited(KeyEvent keyEvent) { Exited(0); }     //Teklatuarekin atera
     //bat
-    public void batEntered() {
-        if (jokalaria == 1) {
-            b02.setGraphic(flechaRoja);
-        }else{
-            b02.setGraphic(flechaAzul);
-        }
-        actualButton=b02;
-    }
-    public void batExited() {
-        b02.setGraphic(w);
-        actualButton=null;
-    }
-    public void batEntered(MouseEvent mouseEvent) {
-        batEntered();
-    }
-    public void batExited(MouseEvent mouseEvent) {
-        batExited();
-    }
-    public void batKeyExited(KeyEvent keyEvent) {
-        batExited();
-    }
-    public void batKeyEntered(KeyEvent keyEvent) {
-        batEntered();
-    }
-
+    public void batEntered(MouseEvent mouseEvent) { Entered(1); }
+    public void batExited(MouseEvent mouseEvent) { Exited(1); }
+    public void batKeyExited(KeyEvent keyEvent) { Exited(1); }
+    public void batKeyEntered(KeyEvent keyEvent) { Entered(1); }
     //bi
-    public void biEntered() {
-        if (jokalaria == 1) {
-            b03.setGraphic(flechaRoja);
-        }else{
-            b03.setGraphic(flechaAzul);
-        }
-        actualButton=b03;
-    }
-    public void biExited() {
-        b03.setGraphic(w);
-        actualButton=null;
-    }
-    public void biEntered(MouseEvent mouseEvent) {
-        biEntered();
-    }
-    public void biExited(MouseEvent mouseEvent) {
-        biExited();
-    }
-    public void biKeyExited(KeyEvent keyEvent) {
-        biExited();
-    }
-    public void biKeyEntered(KeyEvent keyEvent) {
-        biEntered();
-    }
-
+    public void biEntered(MouseEvent mouseEvent) { Entered(2); }
+    public void biExited(MouseEvent mouseEvent) { Exited(2); }
+    public void biKeyExited(KeyEvent keyEvent) { Entered(2); }
+    public void biKeyEntered(KeyEvent keyEvent) { Exited(2); }
     //hiru
-    public void hiruEntered() {
-        if (jokalaria == 1) {
-            b04.setGraphic(flechaRoja);
-        }else{
-            b04.setGraphic(flechaAzul);
-        }
-        actualButton=b04;
-    }
-    public void hiruExited() {
-        b04.setGraphic(w);
-        actualButton=null;
-    }
-    public void hiruEntered(MouseEvent mouseEvent) {
-        hiruEntered();
-    }
-    public void hiruExited(MouseEvent mouseEvent) {
-        hiruExited();
-    }
-    public void hiruKeyExited(KeyEvent keyEvent) {
-        hiruExited();
-    }
-    public void hiruKeyEntered(KeyEvent keyEvent) {
-        hiruEntered();
-    }
-
+    public void hiruEntered(MouseEvent mouseEvent) { Entered(3); }
+    public void hiruExited(MouseEvent mouseEvent) { Exited(3); }
+    public void hiruKeyExited(KeyEvent keyEvent) { Exited(3); }
+    public void hiruKeyEntered(KeyEvent keyEvent) { Entered(3); }
     //lau
-    public void lauEntered() {
-        if (jokalaria == 1) {
-            b05.setGraphic(flechaRoja);
-        }else{
-            b05.setGraphic(flechaAzul);
-        }
-        actualButton=b05;
-    }
-    public void lauExited() {
-        b05.setGraphic(w);
-        actualButton=null;
-    }
-    public void lauEntered(MouseEvent mouseEvent) {
-        lauEntered();
-    }
-    public void lauExited(MouseEvent mouseEvent) {
-        lauExited();
-    }
-    public void lauKeyExited(KeyEvent keyEvent) {
-        lauExited();
-    }
-    public void lauKeyEntered(KeyEvent keyEvent) {
-        lauEntered();
-    }
-
+    public void lauEntered(MouseEvent mouseEvent) { Entered(4); }
+    public void lauExited(MouseEvent mouseEvent) { Exited(4); }
+    public void lauKeyExited(KeyEvent keyEvent) { Exited(4); }
+    public void lauKeyEntered(KeyEvent keyEvent) { Entered(4); }
     //bost
-    public void bostEntered() {
-        if (jokalaria == 1) {
-            b06.setGraphic(flechaRoja);
-        }else{
-            b06.setGraphic(flechaAzul);
-        }
-        actualButton=b06;
-    }
-    public void bostExited() {
-        b06.setGraphic(w);
-        actualButton=null;
-    }
-    public void bostEntered(MouseEvent mouseEvent) {
-        bostEntered();
-    }
-    public void bostExited(MouseEvent mouseEvent) {
-        bostExited();
-    }
-    public void bostKeyExited(KeyEvent keyEvent) {
-        bostExited();
-    }
-    public void bostKeyEntered(KeyEvent keyEvent) {
-        bostEntered();
-    }
-
+    public void bostEntered(MouseEvent mouseEvent) { Entered(5); }
+    public void bostExited(MouseEvent mouseEvent) { Exited(5); }
+    public void bostKeyExited(KeyEvent keyEvent) { Exited(5); }
+    public void bostKeyEntered(KeyEvent keyEvent) { Entered(5); }
     //sei
-    public void seiEntered() {
-        if (jokalaria == 1) {
-            b07.setGraphic(flechaRoja);
-        }else{
-            b07.setGraphic(flechaAzul);
-        }
-        actualButton=b07;
-    }
-    public void seiExited() {
-        b07.setGraphic(w);
-        actualButton=null;
-    }
-    public void seiEntered(MouseEvent mouseEvent) {
-        seiEntered();
-    }
-    public void seiExited(MouseEvent mouseEvent) {
-        seiExited();
-    }
-    public void seiKeyExited(KeyEvent keyEvent) {
-        seiExited();
-    }
-    public void seiKeyEntered(KeyEvent keyEvent) {
-        seiEntered();
-    }
-
+    public void seiEntered(MouseEvent mouseEvent) { Entered(6); }
+    public void seiExited(MouseEvent mouseEvent) { Exited(6); }
+    public void seiKeyExited(KeyEvent keyEvent) { Exited(6); }
+    public void seiKeyEntered(KeyEvent keyEvent) { Entered(6); }
     //zazpi
-    public void zazpiEntered() {
-        if (jokalaria == 1) {
-            b01.setGraphic(flechaRoja);
-        }else{
-            b01.setGraphic(flechaAzul);
-        }
-        actualButton=b01;
-    }
-    public void zazpiExited() {
-        b01.setGraphic(w);
-        actualButton=null;
-    }
-    public void zazpiEntered(MouseEvent mouseEvent) {
-        zazpiEntered();
-    }
-    public void zazpiExited(MouseEvent mouseEvent) {
-        zazpiExited();
-    }
-    public void zazpiKeyExited(KeyEvent keyEvent) {
-        zazpiExited();
-    }
-    public void zazpiKeyEntered(KeyEvent keyEvent) {
-        zazpiEntered();
-    }
-
+    public void zazpiEntered(MouseEvent mouseEvent) { Entered(7); }
+    public void zazpiExited(MouseEvent mouseEvent) { Exited(7); }
+    public void zazpiKeyExited(KeyEvent keyEvent) { Exited(7); }
+    public void zazpiKeyEntered(KeyEvent keyEvent) { Entered(7); }
     //zortzi
-    public void zortziEntered() {
-        if (jokalaria == 1) {
-            b08.setGraphic(flechaRoja);
-        } else {
-            b08.setGraphic(flechaAzul);
-        }
-        actualButton=b08;
-    }
-    public void zortziExited() {
-        b08.setGraphic(w);
-        actualButton=null;
-    }
-    public void zortziEntered(MouseEvent mouseEvent) {
-        zortziEntered();
-    }
-    public void zortziExited(MouseEvent mouseEvent) {
-        zortziExited();
-    }
-    public void zortziKeyExited(KeyEvent keyEvent) {
-        zortziExited();
-    }
-    public void zortziKeyEntered(KeyEvent keyEvent) {
-        zortziEntered();
-    }
-
+    public void zortziEntered(MouseEvent mouseEvent) { Entered(8); }
+    public void zortziExited(MouseEvent mouseEvent) { Exited(8); }
+    public void zortziKeyExited(KeyEvent keyEvent) { Exited(8); }
+    public void zortziKeyEntered(KeyEvent keyEvent) { Entered(8); }
 
 
     public class RemindTask extends TimerTask {
