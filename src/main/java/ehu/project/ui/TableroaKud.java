@@ -5,8 +5,6 @@ import ehu.project.Main;
 import ehu.project.db.DBKud;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,8 +21,6 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -82,11 +78,7 @@ public class TableroaKud implements Initializable {
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
-
+    public void initialize(URL location, ResourceBundle resources) { }
 
     public void hasieratu(String j1,String j2,String n){
         stop=false;
@@ -132,159 +124,157 @@ public class TableroaKud implements Initializable {
 
     }
 
-    public Circle kasillaLortu(int zutabea, int ilara){
-        if(zutabea==0){ if(ilara==0){return k00;}else if(ilara==1){return k01;} else if(ilara==2){return k02;} else if(ilara==3){return k03;} else if(ilara==4){return k04;} else if(ilara==5){return k05;}
-        } else if(zutabea==1){if(ilara==0){return k10;} else if(ilara==1){return k11;} else if(ilara==2){return k12;} else if(ilara==3){return k13;} else if(ilara==4){return k14;} else if(ilara==5){return k15;}
-        } else if(zutabea==2){if(ilara==0){return k20;} else if(ilara==1){return k21;} else if(ilara==2){return k22;} else if(ilara==3){return k23;} else if(ilara==4){return k24;} else if(ilara==5){return k25;}
-        } else if(zutabea==3){if(ilara==0){return k30;} else if(ilara==1){return k31;} else if(ilara==2){return k32;} else if(ilara==3){return k33;} else if(ilara==4){return k34;} else if(ilara==5){return k35;}
-        } else if(zutabea==4){if(ilara==0){return k40;} else if(ilara==1){return k41;} else if(ilara==2){return k42;} else if(ilara==3){return k43;} else if(ilara==4){return k44;} else if(ilara==5){return k45;}
-        } else if(zutabea==5){ if(ilara==0){return k50;} else if(ilara==1){return k51;} else if(ilara==2){return k52;} else if(ilara==3){return k53;} else if(ilara==4){return k54;} else if(ilara==5){return k55;}
-        } else if(zutabea==6){if(ilara==0){return k60;} else if(ilara==1){return k61;} else if(ilara==2){return k62;} else if(ilara==3){return k63;} else if(ilara==4){return k64;} else if(ilara==5){return k65;}
-        } else if(zutabea==7){ if(ilara==0){return k70;} else if(ilara==1){return k71;} else if(ilara==2){return k72;} else if(ilara==3){return k73;} else if(ilara==4){return k74;} else if(ilara==5){return k75;}
-        } else if(zutabea==8){ if(ilara==0){return k80;} else if(ilara==1){return k81;} else if(ilara==2){return k82;} else if(ilara==3){return k83;} else if(ilara==4){return k84;} else if(ilara==5){return k85;}
-        }return null;
-    }
-
-
-    public void fitxaSartu(int zutabea, int ilara) {
-        Circle kasilla= kasillaLortu(zutabea,ilara);
-        tableroa[zutabea][ilara] = true;
-        if (jokalaria == 1) {
-            kasilla.setFill(Color.RED);
-            gorri[zutabea][ilara] = true;
-            konprobatu4EnRayaDagoen(zutabea,ilara,"gorri");
-            jokalaria++;//txanda aldatu
-            jokalariTxanda.setText(jok2);
-
-            if(jokalariTxanda.getText().equals("Ordenagailua")){ //Orain ordenagailuaren txanda bada, berak egingo du
-                Timer timer = new Timer();
-                blokeatuta=true;
-                timer.schedule(new RemindTask(), 1000);
-            }
-            if(actualButton!=null){
-                actualButton.setGraphic(flechaAzul);
-            }
-        } else {
-            kasilla.setFill(Color.BLUE);
-            urdin[zutabea][ilara] = true;
-            konprobatu4EnRayaDagoen(zutabea,ilara,"urdin");
-            jokalaria--;
-            jokalariTxanda.setText(jok1);
-            if(actualButton!=null){
-                actualButton.setGraphic(flechaRoja);
-            }
-        }
-    }
-
-    public void ordenagailuarenTxanda() {
-        if(nondik.equals("JOErraza")){ //Ordenagailu erraza
-            ordenagailuaZutabeBatHautatuAleatorioki();
-
-        }else if(nondik.equals("JOZaila")){ //Ordenagailu ZAILA
-            ordenagailuaZutabeaHautatuInteligentziaArtifizialaErabiliz();
-
-        }else{
-            System.out.println("Erroreren bat egon da");
-        }
-    }
-
-
-
-    public void ordenagailuaZutabeBatHautatuAleatorioki(){ //Ordenagailu ERRAZA
-        Random r = new Random();//0-8 artean zenbaki bat hartuko du. Zutabe bati egingo dio erreferentzia zenbakia. Beraz ateratako zenbakian sartuko du fitxa
-        int zenbakia = r.nextInt(9);
-        botoiFitxaSartu(zenbakia);
-    }
-
-
-    public void ordenagailuaZutabeaHautatuInteligentziaArtifizialaErabiliz() {
-
-
-
-
-        //Lo de IA. Elegir en que zutabe tiene que meter la ficha
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
 
     //ZUTABE BAKOITZEAN FITXA SARTZEKO BOTOIAN CLICK
-    public void b0(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(0); }
-    }
-    public void b1(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(1); }
-    }
-    public void b2(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(2); }
-    }
-    public void b3(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(3); }
-    }
-    public void b4(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(4); }
-    }
-    public void b5(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(5); }
-    }
-    public void b6(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(6); }
-    }
-    public void b7(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(7); }
-    }
-    public void b8(ActionEvent actionEvent) {
-        if(!blokeatuta) { botoiFitxaSartu(8); }
-    }
-    public void botoiFitxaSartu(int zutabea){
-        if (!tableroa[zutabea][5]) { //false --> EZ dago beteta. ilara=5, behekoa da. Beraz lehenengo, behekoa beteta dagoen begiratuko du, beteta badago, goikora joango da...
-            fitxaSartu(zutabea,5);
-        } else if (!tableroa[zutabea][4]) {
-            fitxaSartu(zutabea,4);
-        } else if (!tableroa[zutabea][3]) {
-            fitxaSartu(zutabea,3);
-        } else if (!tableroa[zutabea][2]) {
-            fitxaSartu(zutabea,2);
-        } else if (!tableroa[zutabea][1]) {
-            fitxaSartu(zutabea,1);
-        } else if (!tableroa[zutabea][0]) {
-            fitxaSartu(zutabea,0);
-        }else{
-            //Beteta dago
-            zutabeGuztiakBetetaKonprobatu(); //Konprobatu badaudela beteta ez dauden kasillak
-            if (jokalaria == 2) {
-                if (jok2.equals("Ordenagailua")) {//Ordenagailua bada zutabe hau hautatu duena, beste zutabe bat hautatu beharko du berriro ere
-                    ordenagailuarenTxanda();
-                } else {
+        public void b0(ActionEvent actionEvent) {
+            if(!blokeatuta) { botoiFitxaSartu(0); }
+        }
+        public void b1(ActionEvent actionEvent) {
+            if(!blokeatuta) { botoiFitxaSartu(1); }
+        }
+        public void b2(ActionEvent actionEvent) {
+            if(!blokeatuta) { botoiFitxaSartu(2); }
+        }
+        public void b3(ActionEvent actionEvent) {
+            if(!blokeatuta) { botoiFitxaSartu(3); }
+        }
+        public void b4(ActionEvent actionEvent) {
+            if(!blokeatuta) { botoiFitxaSartu(4); }
+        }
+        public void b5(ActionEvent actionEvent) {
+            if(!blokeatuta) { botoiFitxaSartu(5); }
+        }
+        public void b6(ActionEvent actionEvent) {
+            if(!blokeatuta) { botoiFitxaSartu(6); }
+        }
+        public void b7(ActionEvent actionEvent) {
+            if(!blokeatuta) { botoiFitxaSartu(7); }
+        }
+        public void b8(ActionEvent actionEvent) {
+            if(!blokeatuta) { botoiFitxaSartu(8); }
+        }
+        public void botoiFitxaSartu(int zutabea){
+            if (!tableroa[zutabea][5]) { //false --> EZ dago beteta. ilara=5, behekoa da. Beraz lehenengo, behekoa beteta dagoen begiratuko du, beteta badago, goikora joango da...
+                fitxaSartu(zutabea,5);
+            } else if (!tableroa[zutabea][4]) {
+                fitxaSartu(zutabea,4);
+            } else if (!tableroa[zutabea][3]) {
+                fitxaSartu(zutabea,3);
+            } else if (!tableroa[zutabea][2]) {
+                fitxaSartu(zutabea,2);
+            } else if (!tableroa[zutabea][1]) {
+                fitxaSartu(zutabea,1);
+            } else if (!tableroa[zutabea][0]) {
+                fitxaSartu(zutabea,0);
+            }else{
+                //Beteta dago
+                zutabeGuztiakBetetaKonprobatu(); //Konprobatu badaudela beteta ez dauden kasillak
+                if (jokalaria == 2) {
+                    if (jok2.equals("Ordenagailua")) {//Ordenagailua bada zutabe hau hautatu duena, beste zutabe bat hautatu beharko du berriro ere
+                        ordenagailuarenTxanda();
+                    } else {
+                        System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
+                    }
+                }else {
                     System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
                 }
-            }else {
-                System.out.println("Hautatu duzun zutabea beteta dago jada, beste zutabe bat hauta ezazu!");
             }
         }
-    }
+
+
+
+    //FITXA SARTU DAGOKION LEKUAN
+        public Circle kasillaLortu(int zutabea, int ilara){
+            if(zutabea==0){ if(ilara==0){return k00;}else if(ilara==1){return k01;} else if(ilara==2){return k02;} else if(ilara==3){return k03;} else if(ilara==4){return k04;} else if(ilara==5){return k05;}
+            } else if(zutabea==1){if(ilara==0){return k10;} else if(ilara==1){return k11;} else if(ilara==2){return k12;} else if(ilara==3){return k13;} else if(ilara==4){return k14;} else if(ilara==5){return k15;}
+            } else if(zutabea==2){if(ilara==0){return k20;} else if(ilara==1){return k21;} else if(ilara==2){return k22;} else if(ilara==3){return k23;} else if(ilara==4){return k24;} else if(ilara==5){return k25;}
+            } else if(zutabea==3){if(ilara==0){return k30;} else if(ilara==1){return k31;} else if(ilara==2){return k32;} else if(ilara==3){return k33;} else if(ilara==4){return k34;} else if(ilara==5){return k35;}
+            } else if(zutabea==4){if(ilara==0){return k40;} else if(ilara==1){return k41;} else if(ilara==2){return k42;} else if(ilara==3){return k43;} else if(ilara==4){return k44;} else if(ilara==5){return k45;}
+            } else if(zutabea==5){ if(ilara==0){return k50;} else if(ilara==1){return k51;} else if(ilara==2){return k52;} else if(ilara==3){return k53;} else if(ilara==4){return k54;} else if(ilara==5){return k55;}
+            } else if(zutabea==6){if(ilara==0){return k60;} else if(ilara==1){return k61;} else if(ilara==2){return k62;} else if(ilara==3){return k63;} else if(ilara==4){return k64;} else if(ilara==5){return k65;}
+            } else if(zutabea==7){ if(ilara==0){return k70;} else if(ilara==1){return k71;} else if(ilara==2){return k72;} else if(ilara==3){return k73;} else if(ilara==4){return k74;} else if(ilara==5){return k75;}
+            } else if(zutabea==8){ if(ilara==0){return k80;} else if(ilara==1){return k81;} else if(ilara==2){return k82;} else if(ilara==3){return k83;} else if(ilara==4){return k84;} else if(ilara==5){return k85;}
+            }return null;
+        }
+
+        public void fitxaSartu(int zutabea, int ilara) {
+            Circle kasilla= kasillaLortu(zutabea,ilara);
+            tableroa[zutabea][ilara] = true;
+            if (jokalaria == 1) {
+                kasilla.setFill(Color.RED);
+                gorri[zutabea][ilara] = true;
+                konprobatu4EnRayaDagoen(zutabea,ilara,"gorri");
+                jokalaria++;//txanda aldatu
+                jokalariTxanda.setText(jok2);
+
+                if(jokalariTxanda.getText().equals("Ordenagailua")){ //Orain ordenagailuaren txanda bada, berak egingo du
+                    Timer timer = new Timer();
+                    blokeatuta=true;
+                    timer.schedule(new RemindTask(), 1000);
+                }
+                if(actualButton!=null){
+                    actualButton.setGraphic(flechaAzul);
+                }
+            } else {
+                kasilla.setFill(Color.BLUE);
+                urdin[zutabea][ilara] = true;
+                konprobatu4EnRayaDagoen(zutabea,ilara,"urdin");
+                jokalaria--;
+                jokalariTxanda.setText(jok1);
+                if(actualButton!=null){
+                    actualButton.setGraphic(flechaRoja);
+                }
+            }
+        }
+
+
+    //ORDENAGAILUAREN TXANDA. ERREZA ETA ZAILA
+        public void ordenagailuarenTxanda() {
+            if(nondik.equals("JOErraza")){ //Ordenagailu erraza
+                ordenagailuaZutabeBatHautatuAleatorioki();
+
+            }else if(nondik.equals("JOZaila")){ //Ordenagailu ZAILA
+                ordenagailuaZutabeaHautatuInteligentziaArtifizialaErabiliz();
+
+            }else{
+                System.out.println("Erroreren bat egon da");
+            }
+        }
+
+        public void ordenagailuaZutabeBatHautatuAleatorioki(){ //Ordenagailu ERRAZA
+            Random r = new Random();//0-8 artean zenbaki bat hartuko du. Zutabe bati egingo dio erreferentzia zenbakia. Beraz ateratako zenbakian sartuko du fitxa
+            int zenbakia = r.nextInt(9);
+            botoiFitxaSartu(zenbakia);
+        }
+
+        public void ordenagailuaZutabeaHautatuInteligentziaArtifizialaErabiliz() {
 
 
 
 
-    public void zutabeGuztiakBetetaKonprobatu(){
+            //Lo de IA. Elegir en que zutabe tiene que meter la ficha
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+    //TABLERO OSOA BETETA DAGOEN KONPROBATU. HALA BADA, JOKOA AMAITU DA ETA EZ DU INORK IRABAZI
+        public void zutabeGuztiakBetetaKonprobatu(){
         if (tableroa[8][0] && tableroa[7][0] && tableroa[6][0] && tableroa[5][0] && tableroa[4][0] && tableroa[3][0] && tableroa[2][0] && tableroa[1][0] && tableroa[0][0]) {
             jokoaAmaituDa(); //Guztiak beteta daude - beraz jokoa amaitu da eta ez du inork irabazi
         }
     }
 
-    public void jokoaAmaituDa(){
+        public void jokoaAmaituDa(){
         stop=true;  //kronometroa gelditu
         blokeatuta=true;
         mainApp.pantailaHanditu();
@@ -296,8 +286,8 @@ public class TableroaKud implements Initializable {
     }
 
 
-
-    public void konprobatu4EnRayaDagoen( int zutabea, int ilara, String kolore){
+    //KONPROBATU 4EN RAYA DAGOEN
+        public void konprobatu4EnRayaDagoen( int zutabea, int ilara, String kolore){
         boolean[][] m = null;
 
         if(kolore=="gorri"){
@@ -482,7 +472,8 @@ public class TableroaKud implements Initializable {
 
     }
 
-    private void irabazi() { //SOLO SALEN LAS TRISTES SI GANA EL ORDENADOR, CON 2JOK SALE EL DE GANAR
+    //IRABAZLEA DAGO
+        private void irabazi() { //SOLO SALEN LAS TRISTES SI GANA EL ORDENADOR, CON 2JOK SALE EL DE GANAR
         mainApp.pantailaHanditu();
         stop=true;  //kronometroa gelditu
         blokeatuta=true;
@@ -515,7 +506,8 @@ public class TableroaKud implements Initializable {
     }
 
 
-    public void clickMenuBiJok(ActionEvent actionEvent) {
+    //MENUAK. Joko era aldatu edo berrabiarazi jokoa
+        public void clickMenuBiJok(ActionEvent actionEvent) {
         if(!nondik.equals("BiJok")) {
             mainApp.tableroaKargatu("Jokalari 1", "Jokalari 2", "BiJok");
         }else{
@@ -523,7 +515,7 @@ public class TableroaKud implements Initializable {
         }
    }
 
-    public void clickMenuJOErraza(ActionEvent actionEvent) {
+        public void clickMenuJOErraza(ActionEvent actionEvent) {
         if(!nondik.equals("JOErraza")) {
             mainApp.tableroaKargatu("Jokalari 1","Ordenagailua","JOErraza");
         }else{
@@ -531,7 +523,7 @@ public class TableroaKud implements Initializable {
         }
     }
 
-    public void clickMenuJOZaila(ActionEvent actionEvent) {
+        public void clickMenuJOZaila(ActionEvent actionEvent) {
         if(!nondik.equals("JOZaila")) {
             mainApp.tableroaKargatu("Jokalari 1","Ordenagailua","JOZaila");
         }else{
@@ -539,7 +531,7 @@ public class TableroaKud implements Initializable {
         }
     }
 
-    public void clickBerrabiarazi(ActionEvent actionEvent) {
+        public void clickBerrabiarazi(ActionEvent actionEvent) {
         mainApp.pantailaTxikitu();
         if(nondik.equals("BiJok")) {
             mainApp.tableroaKargatu("Jokalari 1", "Jokalari 2", "BiJok");
@@ -554,8 +546,8 @@ public class TableroaKud implements Initializable {
 
 
 
-    //Kronometroa
-    public void start() {
+    //KRONOMETROA
+        public void start() {
         Timeline timeline=null;
         final int[] min = {0};
         final int[] seg = {0};
@@ -600,18 +592,20 @@ public class TableroaKud implements Initializable {
     }
 
 
-    public void berrizClick(ActionEvent actionEvent) {
+    //JOKOA AMAITZEAN, BERRIRO JOKATZEKO BOTOIA AZALDUKO DA
+        public void berrizClick(ActionEvent actionEvent) {
         this.clickBerrabiarazi(actionEvent);
     }
 
-    public void rankingClick(ActionEvent actionEvent) {
+    //JOKOA AMAITZEAN, ORDENAGAILUAREN KONTRA BADA, RANKING-A BISTARATU
+        public void rankingClick(ActionEvent actionEvent) {
         //Ranking-a gorde nahi badu, izena eskatuko dio:
         labelIzena.setVisible(true);
         IzenaSartu.setVisible(true);
         OK.setVisible(true);
     }
 
-    public void okClick(ActionEvent actionEvent) {
+        public void okClick(ActionEvent actionEvent) {
         //izena sartu du jada. konprobatu hutsa ez dela
         if(!IzenaSartu.getText().equals("")){  //izen bat sartu badu, izena sartzeko kutxak desgaituko ditugu, eta ranking-a erakusteko kutxak gaitu
             labelIzena.setVisible(false);
@@ -634,85 +628,85 @@ public class TableroaKud implements Initializable {
 
 
 
-    //BOTOIAREN GAINEAN ZAUDELA ADIERAZI. MOUSE NAIZ KEYBOARD
+    //ZE BOTOIAREN GAINEAN ZAUDEN ADIERAZI. GEZI URDINA EDO GORRIA TURNOAREN ARABERA, saguarekin naiz teklatuarekin mugi daiteke
     //.button:hover{-fx-graphic: url("flecha.png" );}  - Baina ezin dira desberdindu gezi urdinak eta gorriak. beraz oraingoz ez dugu erabiliko
-
-    public Button botoiaLortu(int botoiId){
-        if(botoiId==0){ return b0;}
-        else if(botoiId==1){ return b01;}
-        else if(botoiId==2){ return b02;}
-        else if(botoiId==3){ return b03;}
-        else if(botoiId==4){ return b04;}
-        else if(botoiId==5){ return b05;}
-        else if(botoiId==6){ return b06;}
-        else if(botoiId==7){ return b07;}
-        else if(botoiId==8){ return b08;}
-        return null;
-    }
-
-    public void Entered(int botoiId){
-        Button botoia = botoiaLortu(botoiId);
-        if (jokalaria == 1) {
-            botoia.setGraphic(flechaRoja);
-        }else{
-            botoia.setGraphic(flechaAzul);
+        public Button botoiaLortu(int botoiId){
+            if(botoiId==0){ return b0;}
+            else if(botoiId==1){ return b01;}
+            else if(botoiId==2){ return b02;}
+            else if(botoiId==3){ return b03;}
+            else if(botoiId==4){ return b04;}
+            else if(botoiId==5){ return b05;}
+            else if(botoiId==6){ return b06;}
+            else if(botoiId==7){ return b07;}
+            else if(botoiId==8){ return b08;}
+            return null;
         }
-        actualButton=botoia;
-    }
 
-    public void Exited(int botoiId){
-        Button botoia = botoiaLortu(botoiId);
-        botoia.setGraphic(w);
-        actualButton=null;
-    }
-    //zero
-    public void zeroEntered(MouseEvent mouseEvent) { Entered(0); }  //Saguarekin sartu
-    public void zeroExited(MouseEvent mouseEvent) { Exited(0); }    //Saguarekin atera
-    public void zeroKeyEntered(KeyEvent keyEvent) { Entered(0); }   //Teklatuarekin sartu
-    public void zeroKeyExited(KeyEvent keyEvent) { Exited(0); }     //Teklatuarekin atera
-    //bat
-    public void batEntered(MouseEvent mouseEvent) { Entered(1); }
-    public void batExited(MouseEvent mouseEvent) { Exited(1); }
-    public void batKeyExited(KeyEvent keyEvent) { Exited(1); }
-    public void batKeyEntered(KeyEvent keyEvent) { Entered(1); }
-    //bi
-    public void biEntered(MouseEvent mouseEvent) { Entered(2); }
-    public void biExited(MouseEvent mouseEvent) { Exited(2); }
-    public void biKeyExited(KeyEvent keyEvent) { Entered(2); }
-    public void biKeyEntered(KeyEvent keyEvent) { Exited(2); }
-    //hiru
-    public void hiruEntered(MouseEvent mouseEvent) { Entered(3); }
-    public void hiruExited(MouseEvent mouseEvent) { Exited(3); }
-    public void hiruKeyExited(KeyEvent keyEvent) { Exited(3); }
-    public void hiruKeyEntered(KeyEvent keyEvent) { Entered(3); }
-    //lau
-    public void lauEntered(MouseEvent mouseEvent) { Entered(4); }
-    public void lauExited(MouseEvent mouseEvent) { Exited(4); }
-    public void lauKeyExited(KeyEvent keyEvent) { Exited(4); }
-    public void lauKeyEntered(KeyEvent keyEvent) { Entered(4); }
-    //bost
-    public void bostEntered(MouseEvent mouseEvent) { Entered(5); }
-    public void bostExited(MouseEvent mouseEvent) { Exited(5); }
-    public void bostKeyExited(KeyEvent keyEvent) { Exited(5); }
-    public void bostKeyEntered(KeyEvent keyEvent) { Entered(5); }
-    //sei
-    public void seiEntered(MouseEvent mouseEvent) { Entered(6); }
-    public void seiExited(MouseEvent mouseEvent) { Exited(6); }
-    public void seiKeyExited(KeyEvent keyEvent) { Exited(6); }
-    public void seiKeyEntered(KeyEvent keyEvent) { Entered(6); }
-    //zazpi
-    public void zazpiEntered(MouseEvent mouseEvent) { Entered(7); }
-    public void zazpiExited(MouseEvent mouseEvent) { Exited(7); }
-    public void zazpiKeyExited(KeyEvent keyEvent) { Exited(7); }
-    public void zazpiKeyEntered(KeyEvent keyEvent) { Entered(7); }
-    //zortzi
-    public void zortziEntered(MouseEvent mouseEvent) { Entered(8); }
-    public void zortziExited(MouseEvent mouseEvent) { Exited(8); }
-    public void zortziKeyExited(KeyEvent keyEvent) { Exited(8); }
-    public void zortziKeyEntered(KeyEvent keyEvent) { Entered(8); }
+        public void Entered(int botoiId){
+            Button botoia = botoiaLortu(botoiId);
+            if (jokalaria == 1) {
+                botoia.setGraphic(flechaRoja);
+            }else{
+                botoia.setGraphic(flechaAzul);
+            }
+            actualButton=botoia;
+        }
+
+        public void Exited(int botoiId){
+            Button botoia = botoiaLortu(botoiId);
+            botoia.setGraphic(w);
+            actualButton=null;
+        }
+        //zero botoia
+        public void zeroEntered(MouseEvent mouseEvent) { Entered(0); }  //Saguarekin sartu
+        public void zeroExited(MouseEvent mouseEvent) { Exited(0); }    //Saguarekin atera
+        public void zeroKeyEntered(KeyEvent keyEvent) { Entered(0); }   //Teklatuarekin sartu
+        public void zeroKeyExited(KeyEvent keyEvent) { Exited(0); }     //Teklatuarekin atera
+        //bat botoia
+        public void batEntered(MouseEvent mouseEvent) { Entered(1); }
+        public void batExited(MouseEvent mouseEvent) { Exited(1); }
+        public void batKeyExited(KeyEvent keyEvent) { Exited(1); }
+        public void batKeyEntered(KeyEvent keyEvent) { Entered(1); }
+        //bi botoia
+        public void biEntered(MouseEvent mouseEvent) { Entered(2); }
+        public void biExited(MouseEvent mouseEvent) { Exited(2); }
+        public void biKeyExited(KeyEvent keyEvent) { Entered(2); }
+        public void biKeyEntered(KeyEvent keyEvent) { Exited(2); }
+        //hiru botoia
+        public void hiruEntered(MouseEvent mouseEvent) { Entered(3); }
+        public void hiruExited(MouseEvent mouseEvent) { Exited(3); }
+        public void hiruKeyExited(KeyEvent keyEvent) { Exited(3); }
+        public void hiruKeyEntered(KeyEvent keyEvent) { Entered(3); }
+        //lau botoia
+        public void lauEntered(MouseEvent mouseEvent) { Entered(4); }
+        public void lauExited(MouseEvent mouseEvent) { Exited(4); }
+        public void lauKeyExited(KeyEvent keyEvent) { Exited(4); }
+        public void lauKeyEntered(KeyEvent keyEvent) { Entered(4); }
+        //bost botoia
+        public void bostEntered(MouseEvent mouseEvent) { Entered(5); }
+        public void bostExited(MouseEvent mouseEvent) { Exited(5); }
+        public void bostKeyExited(KeyEvent keyEvent) { Exited(5); }
+        public void bostKeyEntered(KeyEvent keyEvent) { Entered(5); }
+        //sei botoia
+        public void seiEntered(MouseEvent mouseEvent) { Entered(6); }
+        public void seiExited(MouseEvent mouseEvent) { Exited(6); }
+        public void seiKeyExited(KeyEvent keyEvent) { Exited(6); }
+        public void seiKeyEntered(KeyEvent keyEvent) { Entered(6); }
+        //zazpi botoia
+        public void zazpiEntered(MouseEvent mouseEvent) { Entered(7); }
+        public void zazpiExited(MouseEvent mouseEvent) { Exited(7); }
+        public void zazpiKeyExited(KeyEvent keyEvent) { Exited(7); }
+        public void zazpiKeyEntered(KeyEvent keyEvent) { Entered(7); }
+        //zortzi botoia
+        public void zortziEntered(MouseEvent mouseEvent) { Entered(8); }
+        public void zortziExited(MouseEvent mouseEvent) { Exited(8); }
+        public void zortziKeyExited(KeyEvent keyEvent) { Exited(8); }
+        public void zortziKeyEntered(KeyEvent keyEvent) { Entered(8); }
 
 
-    public class RemindTask extends TimerTask {
+    //ORDENAGAILUA SEGUNDUAN EZ JARTZEKO FITXA, DELAY BAT SARTUKO DIOGU
+        public class RemindTask extends TimerTask {
         private Timer timer;
         public void run() {
             timer=new Timer();
