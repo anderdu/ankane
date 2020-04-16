@@ -222,11 +222,6 @@
             <Image url="@../irudiak/triste.gif" />
          </image>
       </ImageView>
-      <Label fx:id="irabaziLabel" layoutX="130.0" layoutY="140.0" prefHeight="74.0" prefWidth="381.0" text="ZORIONAK!!">
-         <font>
-            <Font size="60.0" />
-         </font>
-      </Label>
       <Button fx:id="berrizB" layoutX="629.0" layoutY="126.0" mnemonicParsing="false" onAction="#berrizClick" text="Berriro jokatu" />
       <Button fx:id="rankingB" layoutX="770.0" layoutY="126.0" mnemonicParsing="false" onAction="#rankingClick" text="Emaitza gorde" />
       <TableView fx:id="taula" layoutX="608.0" layoutY="241.0" prefHeight="290.0" prefWidth="286.0">
@@ -244,5 +239,10 @@
       <Label fx:id="labelIzena" layoutX="629.0" layoutY="190.0" text="Izen bat sartu:" />
       <TextField fx:id="IzenaSartu" layoutX="728.0" layoutY="185.0" prefHeight="26.0" prefWidth="152.0" />
       <Button fx:id="OK" layoutX="720.0" layoutY="222.0" mnemonicParsing="false" onAction="#okClick" text="OK" />
+      <Label fx:id="irabaziLabel" contentDisplay="CENTER" layoutX="150.0" layoutY="152.0" text="" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="54.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

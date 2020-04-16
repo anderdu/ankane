@@ -689,25 +689,9 @@ public class TableroaKud implements Initializable {
 
 
     public void zutabeGuztiakBetetaKonprobatu(){
-        if (tableroa[8][0] == true) {
-            if (tableroa[7][0] == true) {
-                if (tableroa[6][0] == true) {
-                    if (tableroa[5][0] == true) {
-                        if (tableroa[4][0] == true) {
-                            if (tableroa[3][0] == true) {
-                                if (tableroa[2][0] == true) {
-                                    if (tableroa[1][0] == true) {
-                                        if (tableroa[0][0] == true) {
-                                            //Guztiak beteta daude - beraz jokoa amaitu da eta ez du inork irabazi
-                                            jokoaAmaituDa();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        if (tableroa[8][0] && tableroa[7][0] && tableroa[6][0] && tableroa[5][0] && tableroa[4][0] && tableroa[3][0] && tableroa[2][0] && tableroa[1][0] && tableroa[0][0]) {
+            //Guztiak beteta daude - beraz jokoa amaitu da eta ez du inork irabazi
+            jokoaAmaituDa();
         }
     }
 
@@ -716,16 +700,9 @@ public class TableroaKud implements Initializable {
         System.out.println("Jokoa amaitu da. Ez du inork irabazi");
         //AQUI HABRIA QUE ABRIR ALGUN MENSAJE DE SE HA ACABADO EL JUEGO Y PARAR TODO. Así no sigue
         //ABRIR LA PANTALLA DE ANIMACION;
+        triste.setVisible(true);
+        irabaziLabel.setText("EZ DU INORK \n IRABAZI");
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -756,7 +733,6 @@ public class TableroaKud implements Initializable {
                     if(m[zutabea-2][ilara]){
                         if((zutabea-3)>=0){
                             if(m[zutabea-3][ilara]){
-                                irabazi=true;
                                 this.irabazi();
                                 stop=true;
                             }else{
@@ -782,7 +758,6 @@ public class TableroaKud implements Initializable {
                 if(m[zutabea+1][ilara]){
                     if(m[zutabea+2][ilara]){
                         if(m[zutabea+3][ilara]){
-                            irabazi=true;
                             this.irabazi();
                             stop=true;
                         }
@@ -793,7 +768,6 @@ public class TableroaKud implements Initializable {
             if((zutabea+2)<=8){
                 if(m[zutabea+1][ilara]){
                     if(m[zutabea+2][ilara]){
-                        irabazi=true;
                         this.irabazi();
                         stop=true;
                     }
@@ -802,7 +776,6 @@ public class TableroaKud implements Initializable {
         }else if(outNon==3){
             if((zutabea+1)<=8){
                 if(m[zutabea+1][ilara]){
-                    irabazi=true;
                     this.irabazi();
                     stop=true;
                 }
@@ -819,7 +792,6 @@ public class TableroaKud implements Initializable {
                     if(m[zutabea][ilara-2]){
                         if((ilara-3)>=0){
                             if(m[zutabea][ilara-3]){
-                                irabazi=true;
                                 this.irabazi();
                                 stop=true;
                             }else{
@@ -845,7 +817,6 @@ public class TableroaKud implements Initializable {
                 if(m[zutabea][ilara+1]){
                     if(m[zutabea][ilara+2]){
                         if(m[zutabea][ilara+3]){
-                            irabazi=true;
                             this.irabazi();
                             stop=true;
                         }
@@ -856,7 +827,6 @@ public class TableroaKud implements Initializable {
             if((ilara+2)<=5){
                 if(m[zutabea][ilara+1]){
                     if(m[zutabea][ilara+2]){
-                        irabazi=true;
                         this.irabazi();
                         stop=true;
                     }
@@ -865,7 +835,6 @@ public class TableroaKud implements Initializable {
         }else if(outNon==3){
             if((ilara+1)<=5){
                 if(m[zutabea][ilara+1]){
-                    irabazi=true;
                     this.irabazi();
                     stop=true;
                 }
@@ -881,7 +850,6 @@ public class TableroaKud implements Initializable {
                     if(m[zutabea-2][ilara+2]){
                         if((zutabea-3)>=0&&(ilara+3)<=5){
                             if(m[zutabea-3][ilara+3]){
-                                irabazi=true;
                                 this.irabazi();
                                 stop=true;
                             }else{
@@ -907,7 +875,6 @@ public class TableroaKud implements Initializable {
                 if(m[zutabea+1][ilara-1]){
                     if(m[zutabea+2][ilara-2]){
                         if(m[zutabea+3][ilara-3]){
-                            irabazi=true;
                             this.irabazi();
                             stop=true;
                         }
@@ -918,7 +885,6 @@ public class TableroaKud implements Initializable {
             if((zutabea+2)<=8&&(ilara-2)>=0){
                 if(m[zutabea+1][ilara-1]){
                     if(m[zutabea+2][ilara-2]){
-                        irabazi=true;
                         this.irabazi();
                         stop=true;
                     }
@@ -927,18 +893,11 @@ public class TableroaKud implements Initializable {
         }else if(outNon==3){
             if((zutabea+1)<=8&&(ilara-1)>=0){
                 if(m[zutabea+1][ilara-1]){
-                    irabazi=true;
                     this.irabazi();
                     stop=true;
                 }
             }
         }
-
-
-
-
-
-
 
         //DIAGONAL BESTEA
         outNon=0;
@@ -948,7 +907,6 @@ public class TableroaKud implements Initializable {
                     if(m[zutabea-2][ilara-2]){
                         if((ilara-3)>=0&&(zutabea-3)>=0){
                             if(m[zutabea-3][ilara-3]){
-                                irabazi=true;
                                 this.irabazi();
                                 stop=true;
                             }else{
@@ -974,7 +932,6 @@ public class TableroaKud implements Initializable {
                 if(m[zutabea+1][ilara+1]){
                     if(m[zutabea+2][ilara+2]){
                         if(m[zutabea+3][ilara+3]){
-                            irabazi=true;
                             this.irabazi();
                             stop=true;
                         }
@@ -985,7 +942,6 @@ public class TableroaKud implements Initializable {
             if((ilara+2)<=5&&(zutabea+2)<=8){
                 if(m[zutabea+1][ilara+1]){
                     if(m[zutabea+2][ilara+2]){
-                        irabazi=true;
                         this.irabazi();
                         stop=true;
                     }
@@ -994,7 +950,6 @@ public class TableroaKud implements Initializable {
         }else if(outNon==3){
             if((ilara+1)<=5&&(zutabea+1)<=8){
                 if(m[zutabea+1][ilara+1]){
-                    irabazi=true;
                     this.irabazi();
                     stop=true;
                 }
@@ -1007,6 +962,7 @@ public class TableroaKud implements Initializable {
         mainApp.pantailaHanditu();
         System.out.println("IRABAZI "+jokalariTxanda.getText());
         if(jokalariTxanda.getText().equals("Ordenagailua")){
+            rankingB.setVisible(false);
             triste.setVisible(true);
         }else{
             suziri1.setVisible(true);
@@ -1018,14 +974,19 @@ public class TableroaKud implements Initializable {
             irabaziLabel.setVisible(true);
             if(!nondik.equals("BiJok")){
                 irabaziLabel.setText("ZORIONAK!! \n"+jokalariTxanda.getText());
+
+            }else{
+                irabaziLabel.setText("ZORIONAK!! \n"+jokalariTxanda.getText());
             }
             berrizB.setVisible(true);
+
+            if(nondik.equals("JOErraza") || nondik.equals("JOZaila")) {
+                //Ordenagailuaren kontra irabazi badu, ranking-a gordetzeko aukera izango du.
+                rankingB.setVisible(true);
+            }
         }
         berrizB.setVisible(true);
 
-        if(!nondik.equals("BiJok")) {
-            rankingB.setVisible(true);
-        }
     }
 
 
@@ -1115,13 +1076,6 @@ public class TableroaKud implements Initializable {
         timeline.play();
 
     }
-
-
-
-
-
-
-
 
 
 
