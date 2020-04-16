@@ -213,6 +213,7 @@ public class TableroaKud implements Initializable {
     private String jok1;
     private String jok2;
     private String nondik;
+    private boolean blokeatuta;
 
     private static TableroaKud instantzia = new TableroaKud();
 
@@ -295,6 +296,8 @@ public class TableroaKud implements Initializable {
         labelIzena.setVisible(false);
         IzenaSartu.setVisible(false);
         OK.setVisible(false);
+
+        blokeatuta=false;
     }
 
 
@@ -309,6 +312,7 @@ public class TableroaKud implements Initializable {
 
             if(jokalariTxanda.getText().equals("Ordenagailua")){
                 Timer timer = new Timer();
+                blokeatuta=true;
                 timer.schedule(new RemindTask(), 1000);
 
                 //ordenagailuarenTxanda();
@@ -377,7 +381,10 @@ public class TableroaKud implements Initializable {
 
 
     public void b0(ActionEvent actionEvent) { //se repite igual se puede sacar el codigo
-        b0();
+        if(!blokeatuta) {
+            b0();
+        }
+
     }
     public void b0(){
         if (tableroa[0][5] == false) { //false --> EZ dago beteta
@@ -409,7 +416,9 @@ public class TableroaKud implements Initializable {
     }
 
     public void b1(ActionEvent actionEvent) {
-        b1();
+        if(!blokeatuta) {
+            b1();
+        }
     }
     public void b1(){
         if (tableroa[1][5] == false) { //false --> EZ dago beteta
@@ -438,7 +447,9 @@ public class TableroaKud implements Initializable {
         }
     }
     public void b2(ActionEvent actionEvent) {
-        b2();
+        if(!blokeatuta) {
+            b2();
+        }
     }
     public void b2(){
         if (tableroa[2][5] == false) { //false --> EZ dago beteta
@@ -467,7 +478,9 @@ public class TableroaKud implements Initializable {
         }
     }
     public void b3(ActionEvent actionEvent) {
-        b3();
+        if(!blokeatuta) {
+            b3();
+        }
     }
     public void b3(){
         if (tableroa[3][5] == false) { //false --> EZ dago beteta
@@ -496,7 +509,9 @@ public class TableroaKud implements Initializable {
         }
     }
     public void b4(ActionEvent actionEvent) {
-        b4();
+        if(!blokeatuta) {
+            b4();
+        }
     }
     public void b4(){
         if (tableroa[4][5] == false) { //false --> EZ dago beteta
@@ -525,7 +540,9 @@ public class TableroaKud implements Initializable {
         }
     }
     public void b5(ActionEvent actionEvent) {
-        b5();
+        if(!blokeatuta) {
+            b5();
+        }
     }
     public void b5(){
         if (tableroa[5][5] == false) { //false --> EZ dago beteta
@@ -554,7 +571,9 @@ public class TableroaKud implements Initializable {
         }
     }
     public void b6(ActionEvent actionEvent) {
-        b6();
+        if(!blokeatuta) {
+            b6();
+        }
     }
     public void b6(){
         if (tableroa[6][5] == false) { //false --> EZ dago beteta
@@ -584,7 +603,9 @@ public class TableroaKud implements Initializable {
     }
 
     public void b7(ActionEvent actionEvent) {
-        b7();
+        if(!blokeatuta) {
+            b7();
+        }
     }
     public void b7(){
         if (tableroa[7][5] == false) { //false --> EZ dago beteta
@@ -614,7 +635,9 @@ public class TableroaKud implements Initializable {
     }
 
     public void b8(ActionEvent actionEvent) {
-        b8();
+        if(!blokeatuta) {
+            b8();
+        }
     }
     public void b8(){
         if (tableroa[8][5] == false) { //false --> EZ dago beteta
@@ -1308,6 +1331,7 @@ public class TableroaKud implements Initializable {
             timer=new Timer();
             ordenagailuarenTxanda();
             timer.cancel(); //Terminate the timer thread
+            blokeatuta=false;
         }
     }
 
