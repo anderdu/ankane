@@ -1238,7 +1238,6 @@ public class TableroaKud implements Initializable {
         actualButton=b0;
     }
     public void zeroExited() {
-        ImageView w=new ImageView();
         b0.setGraphic(w);
         actualButton=null;
     }
@@ -1266,8 +1265,7 @@ public class TableroaKud implements Initializable {
         actualButton=b02;
     }
     public void batExited() {
-        ImageView w=new ImageView();
-        b02.setGraphic(w);
+       // b02.setGraphic(w);
         actualButton=null;
     }
     public void batEntered(MouseEvent mouseEvent) {
@@ -1294,7 +1292,7 @@ public class TableroaKud implements Initializable {
         actualButton=b03;
     }
     public void biExited() {
-        b03.setGraphic(w);
+        //b03.setGraphic(w);
         actualButton=null;
     }
     public void biEntered(MouseEvent mouseEvent) {
@@ -1321,7 +1319,7 @@ public class TableroaKud implements Initializable {
         actualButton=b04;
     }
     public void hiruExited() {
-        b04.setGraphic(w);
+        //b04.setGraphic(w);
         actualButton=null;
     }
     public void hiruEntered(MouseEvent mouseEvent) {
@@ -1347,7 +1345,7 @@ public class TableroaKud implements Initializable {
         actualButton=b05;
     }
     public void lauExited() {
-        b05.setGraphic(w);
+        //b05.setGraphic(w);
         actualButton=null;
     }
     public void lauEntered(MouseEvent mouseEvent) {
