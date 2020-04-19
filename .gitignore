@@ -11,3 +11,5 @@ gradle
 /src/main/resources/setup.properties
 /src/main/resources/*.png
 
+gradlew
+gradlew.bat

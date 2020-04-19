@@ -234,8 +234,9 @@ public class TableroaKud implements Initializable {
                 ordenagailuaZutabeBatHautatuAleatorioki();
 
             }else if(nondik.equals("JOZaila")){ //Ordenagailu ZAILA
-                ordenagailuaZutabeaHautatuInteligentziaArtifizialaErabiliz();
-
+                MakinaAzkarra maki = new MakinaAzkarra(tableroa,gorri,urdin);
+                int zutPos = maki.posErabaki();
+                botoiFitxaSartu(zutPos);
             }else{
                 System.out.println("Erroreren bat egon da");
             }
@@ -247,24 +248,6 @@ public class TableroaKud implements Initializable {
             botoiFitxaSartu(zenbakia);
         }
 
-        public void ordenagailuaZutabeaHautatuInteligentziaArtifizialaErabiliz() {
-
-
-
-
-            //Lo de IA. Elegir en que zutabe tiene que meter la ficha
-
-
-
-
-
-
-
-
-
-
-
-        }
 
 
     //TABLERO OSOA BETETA DAGOEN KONPROBATU. HALA BADA, JOKOA AMAITU DA ETA EZ DU INORK IRABAZI
