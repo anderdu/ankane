@@ -51,16 +51,23 @@ public class MakinaAzkarra {
             ArrayList<ArrayList<Boolean>> azulesRela3 = conseguirEntorno(zutabe,ilara,urdin,3);
             ArrayList<ArrayList<Boolean>> tabla = conseguirEntorno(zutabe,ilara,tableroa,0);
 
-
+            //System.out.println("if 1");
             if(regalaVictoria(zutabe,ilara)) valor = valor-5000;
+            //System.out.println("if 2");
             valor = valor+bloqueos(rojas,tabla);
+            //System.out.println("if 3");
             valor = valor+cantidadRojasCerca(rojasRela1);
+            //System.out.println("if 4");
             if(bloquea3(rojas,rojasRela2)) valor = valor+10000;
+           // System.out.println("if 5");
             if(bloquea2seguidas(rojasRela2)) valor = valor+20;
+            //System.out.println("if 6");
             if(bloquea2separadas(rojasRela1)) valor = valor+50;
-
+            //System.out.println("if 7");
             if(pone2seguidas(azulesRela1)) valor = valor+15;
+            //System.out.println("if 8");
             if(pone3seguidas(azulesRela2)) valor = valor+25;
+            //System.out.println("if 9");
             if(pone4seguidas(azulesRela3)) valor = valor+10000000;
         }
 
@@ -120,10 +127,10 @@ public class MakinaAzkarra {
             if(dentro.size()==0) nueva.add(false);
             else nueva.add(dentro.get(0));
         }
-        System.out.println("nueva: " +nueva);
+        //System.out.println("nueva: " +nueva);
         if(nueva.get(2) && nueva.get(6)) return true;
-        if(nueva.get(1) && nueva.get(7)) return true;
-        if(nueva.get(3) && nueva.get(8)) return true;
+        if(nueva.get(1) && nueva.get(5)) return true;
+        if(nueva.get(3) && nueva.get(7)) return true;
         return false;
     }
 

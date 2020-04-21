@@ -81,7 +81,7 @@ public class TableroaKud implements Initializable {
     public void initialize(URL location, ResourceBundle resources) { }
 
     public void hasieratu(String j1,String j2,String n){
-        System.err.close();
+        //System.err.close();
         //System.setErr(System.out);
         stop=false;
         this.nondik=n;
