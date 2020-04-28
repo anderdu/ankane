@@ -33,7 +33,8 @@ public class Main extends Application {
     tableroaKud.hasieratu("Jokalari 1","Jokalari 2","BiJok");
 
     stage.setScene(new Scene(tableroa));
-    stage.setMaximized(true);
+    //stage.setMaximized(true);
+    stage.setResizable(false);
     stage.setWidth(610);
     stage.setHeight(640);
     stage.show();
@@ -66,12 +67,12 @@ public class Main extends Application {
   }
 
 public void pantailaTxikitu(){
- // stage.setWidth(610);
- // stage.setHeight(640);
+  stage.setWidth(610);
+  stage.setHeight(640);
 }
 public void pantailaHanditu(){
-  //stage.setWidth(910);
-  //stage.setHeight(640);
+  stage.setWidth(910);
+  stage.setHeight(640);
 }
 
 
