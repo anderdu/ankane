@@ -170,7 +170,7 @@ public class TableroaKud implements Initializable {
                 fitxaSartu(zutabea,0);
             }else{
                 //Beteta dago
-                zutabeGuztiakBetetaKonprobatu(); //Konprobatu badaudela beteta ez dauden kasillak
+                //zutabeGuztiakBetetaKonprobatu(); //Konprobatu badaudela beteta ez dauden kasillak
                 if (jokalaria == 2) {
                     if (jok2.equals("Ordenagailua")) {//Ordenagailua bada zutabe hau hautatu duena, beste zutabe bat hautatu beharko du berriro ere
                         ordenagailuarenTxanda();
@@ -227,6 +227,7 @@ public class TableroaKud implements Initializable {
                     actualButton.setGraphic(flechaRoja);
                 }
             }
+            zutabeGuztiakBetetaKonprobatu();  //konprobatu fitxa berria sartzean, tablero osoa bete den
         }
 
 
