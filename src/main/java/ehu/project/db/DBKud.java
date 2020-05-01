@@ -45,7 +45,7 @@ public class DBKud {
             String query ="DELETE FROM JOErrazaRanking WHERE JokIzena='"+izena+"' AND Denbora='"+denbora+"';";
             dbkud.execSQL(query);
         }else if(jokoMota.equals("JOZaila")){
-            String query ="DELETE FROM JOZailaRanking WHERE JokIzena='"+izena+"' AND Denbora='"+denbora+"';";
+            String query ="DELETE FROM JOZailaRanking WHERE JokIzen='"+izena+"' AND Denbora='"+denbora+"';";
             dbkud.execSQL(query);
         }else{
             System.out.println("Erroreren bat egon da");
@@ -114,7 +114,7 @@ public class DBKud {
             ResultSet rs =dbkud.execSQL(query);
             try {
                 if(rs.next()) {
-                    String izenaRank10 = rs.getString("JokIzena");
+                    String izenaRank10 = rs.getString("JokIzen");
                     String denbRank10 = rs.getString("Denbora");
 
                     if (denbRank10.compareTo(denbora)==1) {  //si es mas pequeño denbRank10 devuelve -1. si es =1 significa q el del rank10 es mas grande
@@ -169,7 +169,7 @@ public class DBKud {
             try {
                 while (rs.next()) {
                     pos++;
-                    String JokIzenaT = rs.getString("JokIzena");
+                    String JokIzenaT = rs.getString("JokIzen");
                     String DenboraT = rs.getString("Denbora");
 
                     Taula t = new Taula(pos,JokIzenaT, DenboraT);
