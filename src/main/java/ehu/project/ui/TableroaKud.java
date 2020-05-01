@@ -267,6 +267,7 @@ public class TableroaKud implements Initializable {
         //Animazioa ireki
         triste.setVisible(true);
         irabaziLabel.setText("EZ DU INORK \n IRABAZI");
+        irabaziLabel.setVisible(true);
         berrizB.setVisible(true);
     }
 
