@@ -10,6 +10,9 @@ gradle
 
 /src/main/resources/setup.properties
 /src/main/resources/*.png
+/src/main/resources/4caneDB.sqlite
+out
+/src/main/java/META-INF/
 
 gradlew
 gradlew.bat
