@@ -10,6 +10,7 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.8'
+    id "com.github.johnrengelman.shadow" version "5.2.0"
 }
 
 javafx {
@@ -47,6 +48,26 @@ run {
         ])
         classpath = files()
     }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Implementation-Title': 'Jar Making Exaple',
+                "Main-Class": "ehu.project.Main"
+        )
+    }
+    destinationDirectory = file(System.getProperty("user.home")+File.separatorChar+"my-jar")
+    archivesBaseName = 'app'
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': "${mainClassName}"//"ehu.project.Main"
+    }
+    baseName = "${rootProject.name}"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 
 
